@@ -35,4 +35,4 @@ you can open a terminal in vscode or use your main terminal and type:
 npm run dev
 ```
 
-go to [http://localhost:3000] in your browser to see the nextjs default page.
+go to http://localhost:3000 in your browser to see the nextjs default page.

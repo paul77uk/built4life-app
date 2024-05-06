@@ -81,6 +81,6 @@ then in the second terminal run:
 npx drizzle-kit studio
 ```
 
-Then you can go to [https://local.drizzle.studio/]
+Then you can go to https://local.drizzle.studio/
 
 There you should see the users table

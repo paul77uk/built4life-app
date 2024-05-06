@@ -1,6 +1,6 @@
 ## Setting Up neondb with drizzle
 
-[https://orm.drizzle.team/docs/get-started-postgresql]
+https://orm.drizzle.team/docs/get-started-postgresql
 
 In your terminal type:
 
@@ -41,11 +41,11 @@ npm i pg drizzle-orm @neondatabase/serverless
 npm i -D drizzle-kit
 ```
 
-Then go to [https://neon.tech/]
+Then go to https://neon.tech/
 
 signup or login
 
-If you haven't before you will need to create a project, you can only have one project on the free tier, but unlimted databases [https://neon.tech/docs/introduction/plans]
+If you haven't before you will need to create a project, you can only have one project on the free tier, but unlimted databases https://neon.tech/docs/introduction/plans
 
 I called the project by my name Paul Vickers's Project, you can use your name or anything you want, then my databases I name to the app name, in this case will be built4life.
 
@@ -72,7 +72,7 @@ DRIZZLE_DATABASE_URL=postgresql://neondb_owner:abcdef123456@ep-fragrant-credit-a
 
 Then create a folder in the root of you nextjs project called `server`. Then in that folder create a file called `index.ts`
 
-It shows the set up in the following link: [https://orm.drizzle.team/docs/get-started-postgresql]
+It shows the set up in the following link: https://orm.drizzle.team/docs/get-started-postgresql
 We paste it in the `index.ts` file:
 
 ```bash
