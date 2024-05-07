@@ -27,7 +27,7 @@ npm error   2 more (styled-jsx, the root project)
 ```
 
 I went to `package.json file`, in the dependencies on about lines 16 & 17, i changed the react and react-dom version number from `"^18"` to `"^18.3.1"`
-so my lines 15 and 17 are now:
+so my lines 16 and 17 are now:
 
 ```bash
 "react": "^18.3.1",
