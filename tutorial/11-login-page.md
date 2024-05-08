@@ -159,3 +159,18 @@ export default Login;
 If you have a google account and gihub account registered to same email, you are going to get an error if sign in with both at any time.
 So you need to go to `server/auth.ts`
 under `clientSecret: process.env.GOOGLE_CLIENT_SECRET!,` add `allowDangerousEmailAccountLinking: true,` and also under the `clientSecret: process.env.GITHUB_SECRET!,`
+
+I notice our navbar is overlapping other pages, I think because of the position fixed, it talks about it here https://www.w3schools.com/css/css_positioning.asp so I found it's size by inspecting it, and wrapped the nav in main and gave it a margin bottom of 80px
+I haven't pasted all the code, but just used ... where the old code is, and just pasted enough to see what is added and where.
+
+`components/navigation/nav.tsx`
+
+```bash
+...
+return (
+    <main className="mb-[80px]">
+      <nav ...
+      </nav>
+    </main>
+    ...
+```

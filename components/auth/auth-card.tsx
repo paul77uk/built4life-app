@@ -1,4 +1,10 @@
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
 import { BackButton } from "./back-button";
 import Socials from "./socials";
 
@@ -18,19 +24,21 @@ export const AuthCard = ({
   showSocials,
 }: CardWrapperProps) => {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{cardTitle}</CardTitle>
-      </CardHeader>
-      <CardContent>{children}</CardContent>
-      {showSocials && (
+    <main className="flex justify-center h-[calc(100vh-80px)] items-center">
+      <Card>
+        <CardHeader>
+          <CardTitle>{cardTitle}</CardTitle>
+        </CardHeader>
+        <CardContent>{children}</CardContent>
+        {showSocials && (
+          <CardFooter>
+            <Socials />
+          </CardFooter>
+        )}
         <CardFooter>
-          <Socials />
+          <BackButton href={backButtonHref} label={backButtonLabel} />
         </CardFooter>
-      )}
-      <CardFooter>
-        <BackButton href={backButtonHref} label={backButtonLabel} />
-      </CardFooter>
-    </Card>
+      </Card>
+    </main>
   );
 };

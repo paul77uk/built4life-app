@@ -2,11 +2,15 @@
 
 import { Button } from "../ui/button";
 import { signIn } from "next-auth/react";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 const Socials = () => {
   return (
-    <div>
+    <div className="flex flex-col items-center w-full gap-4" gap-4>
       <Button
+        variant={"outline"}
+        className="flex gap-4"
         onClick={() =>
           signIn("google", {
             redirect: false,
@@ -14,9 +18,13 @@ const Socials = () => {
           })
         }
       >
-        Sign in with Google
+        <FcGoogle size={24} />
+        <div>Sign in with Google</div>
       </Button>
+
       <Button
+        variant={"outline"}
+        className="flex gap-4"
         onClick={() =>
           signIn("github", {
             redirect: false,
@@ -24,7 +32,8 @@ const Socials = () => {
           })
         }
       >
-        Sign in with Github
+        <FaGithub size={24} />
+        <div>Sign in with Github</div>
       </Button>
     </div>
   );
