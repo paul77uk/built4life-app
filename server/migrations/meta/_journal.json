@@ -15,6 +15,13 @@
       "when": 1715043572432,
       "tag": "0001_flawless_marauders",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1715276923243,
+      "tag": "0002_purple_devos",
+      "breakpoints": true
     }
   ]
 }

@@ -17,6 +17,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { z } from "zod";
+import { emailSignIn } from "@/server/actions/email-signin";
+import { useAction } from "next-safe-action/hooks";
+import { cn } from "@/lib/utils";
 
 export const LoginForm = () => {
   const form = useForm({
@@ -27,8 +30,10 @@ export const LoginForm = () => {
     },
   });
 
+  const { execute, status } = useAction(emailSignIn);
+
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-    console.log(values);
+    execute(values);
   };
 
   return (
@@ -82,7 +87,13 @@ export const LoginForm = () => {
               <Button size={"sm"} variant={"link"} asChild>
                 <Link href="/auth/reset">Forgot your password</Link>
               </Button>
-              <Button type="submit" className="w-full my-2">
+              <Button
+                type="submit"
+                className={cn(
+                  "w-full",
+                  status == "executing" ? "animate-pulse" : ""
+                )}
+              >
                 {"Login"}
               </Button>
             </div>
