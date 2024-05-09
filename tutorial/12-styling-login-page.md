@@ -40,3 +40,11 @@ Then select `Copy code`
 Then in `app/globals.css` replace the similar @layer base {...} with the copied code
 
 Then we can remove the LoginForm text from `login-form.tsx`
+
+The `Create a new account` is not showing up on the button, so we go to `components/auth/back-button.tsx` and add the {label} to the Link like so:
+
+```bash
+...
+<Link aria-label={label} href={href}>{label}</Link>
+...
+```

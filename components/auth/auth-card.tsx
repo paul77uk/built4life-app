@@ -25,7 +25,7 @@ export const AuthCard = ({
 }: CardWrapperProps) => {
   return (
     <main className="flex justify-center h-[calc(100vh-80px)] items-center">
-      <Card>
+      <Card className="w-3/4 sm:w-[500px]">
         <CardHeader>
           <CardTitle>{cardTitle}</CardTitle>
         </CardHeader>

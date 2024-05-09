@@ -10,7 +10,7 @@ const Socials = () => {
     <div className="flex flex-col items-center w-full gap-4" gap-4>
       <Button
         variant={"outline"}
-        className="flex gap-4"
+        className="flex gap-4 w-full"
         onClick={() =>
           signIn("google", {
             redirect: false,
@@ -24,7 +24,7 @@ const Socials = () => {
 
       <Button
         variant={"outline"}
-        className="flex gap-4"
+        className="flex gap-4 w-full"
         onClick={() =>
           signIn("github", {
             redirect: false,
