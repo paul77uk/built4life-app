@@ -1,4 +1,6 @@
 {
+  "id": "1bc3a65c-c902-4ec2-99e3-31c2d678e9cf",
+  "prevId": "570ce001-eb3a-4ccb-9a67-ef637126bfd7",
   "version": "6",
   "dialect": "postgresql",
   "tables": {
@@ -78,15 +80,15 @@
         "account_userId_user_id_fk": {
           "name": "account_userId_user_id_fk",
           "tableFrom": "account",
+          "tableTo": "user",
           "columnsFrom": [
             "userId"
           ],
-          "tableTo": "user",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
+          "onDelete": "cascade",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {
@@ -119,6 +121,12 @@
         "expires": {
           "name": "expires",
           "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         }
@@ -170,6 +178,12 @@
           "primaryKey": false,
           "notNull": false
         },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
         "twoFactorEnabled": {
           "name": "twoFactorEnabled",
           "type": "boolean",
@@ -180,6 +194,7 @@
         "roles": {
           "name": "roles",
           "type": "roles",
+          "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
           "default": "'user'"
@@ -203,10 +218,8 @@
   },
   "schemas": {},
   "_meta": {
+    "columns": {},
     "schemas": {},
-    "tables": {},
-    "columns": {}
-  },
-  "id": "2a23b6c4-b630-4eb0-8013-7995f27b7b25",
-  "prevId": "f618077f-ab43-476b-b51a-06be56a5f6bf"
+    "tables": {}
+  }
 }

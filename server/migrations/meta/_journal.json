@@ -29,6 +29,20 @@
       "when": 1715359961220,
       "tag": "0003_flat_randall",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1715377480728,
+      "tag": "0004_striped_lord_tyger",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1715378528817,
+      "tag": "0005_sudden_mister_fear",
+      "breakpoints": true
     }
   ]
 }

@@ -32,7 +32,7 @@ we may need to do `npx drizzle-kit studio` in that terminal, if it doesn't show 
 
 I had an error after this ` Invalid input  Please specify 'dialect' param in config, either of 'pg', 'mysql' or 'sqlite'`
 
-I went here: `https://orm.drizzle.team/kit-docs/config-reference#configuration`
+I went here: https://orm.drizzle.team/kit-docs/config-reference#configuration
 
 And then altered the file to this:
 

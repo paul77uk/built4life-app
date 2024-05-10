@@ -6,6 +6,7 @@ import { eq } from "drizzle-orm";
 import { createSafeActionClient } from "next-safe-action";
 import { db } from "..";
 import bcrypt from "bcrypt";
+import { generateEmailVerificationToken } from "./tokens";
 
 const action = createSafeActionClient();
 
@@ -22,6 +23,23 @@ export const emailRegister = action(
     });
 
     if (existingUser) {
+      if (!existingUser.emailVerified) {
+        const verificationToken = await generateEmailVerificationToken(email);
+        await setVerificationEmail();
+
+        return { success: "Email Confirmation resent" };
+      }
+
+      // Logic for when the user is not registered
+      await db.insert(users).values({
+        email,
+        name,
+      });
+
+      const verificationToken = await generateEmailVerificationToken(email);
+
+      await sendVerificationEmail();
+
       return { error: "Email already exists" };
     }
 

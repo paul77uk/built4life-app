@@ -7,13 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:generate": "drizzle-kit generate:pg --config drizzle.config.ts",
-    "db:push": "drizzle-kit push:pg --config drizzle.config.ts"
+    "db:generate": "drizzle-kit generate drizzle.config.ts",
+    "db:push": "drizzle-kit push drizzle.config.ts"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.0.1",
     "@hookform/resolvers": "^3.3.4",
     "@neondatabase/serverless": "^0.9.1",
+    "@paralleldrive/cuid2": "^2.2.2",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
