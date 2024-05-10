@@ -1,3 +1,12 @@
+## Register Action
+
+We will install bcrypt to hash our password and the types:
+`npm i bcrypt`
+`npm i @types/bcrypt`
+
+Go to `server/actions/email-register.ts`
+
+```typescript
 "use server";
 
 import { users } from "./../schema";
@@ -28,3 +37,20 @@ export const emailRegister = action(
     return { success: "Confirmation Email Sent!" };
   }
 );
+```
+
+In `components/auth/register-form.tsx` under `const [error, setError] ...`
+
+```typescript
+const { execute, status } = useAction(emailRegister, {
+  onSuccess(data) {
+    if (data.success) {
+      console.log(data.success);
+    }
+  },
+});
+```
+
+And we add `execute(values)` in the onSubmit method
+
+If we now create an account we should see our hashedpassword
