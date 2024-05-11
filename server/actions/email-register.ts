@@ -7,6 +7,7 @@ import { createSafeActionClient } from "next-safe-action";
 import { db } from "..";
 import bcrypt from "bcrypt";
 import { generateEmailVerificationToken } from "./tokens";
+import { sendVerificationEmail } from "./email";
 
 const action = createSafeActionClient();
 
@@ -25,7 +26,10 @@ export const emailRegister = action(
     if (existingUser) {
       if (!existingUser.emailVerified) {
         const verificationToken = await generateEmailVerificationToken(email);
-        await setVerificationEmail();
+        await sendVerificationEmail(
+          verificationToken[0].email,
+          verificationToken[0].token
+        );
 
         return { success: "Email Confirmation resent" };
       }
@@ -37,8 +41,14 @@ export const emailRegister = action(
       });
 
       const verificationToken = await generateEmailVerificationToken(email);
-
-      await sendVerificationEmail();
+      await sendVerificationEmail(
+        verificationToken[0].email,
+        verificationToken[0].token
+      );
+      await sendVerificationEmail(
+        verificationToken[0].email,
+        verificationToken[0].token
+      );
 
       return { error: "Email already exists" };
     }
