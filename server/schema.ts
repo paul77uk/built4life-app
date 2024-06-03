@@ -8,15 +8,15 @@ import {
   pgEnum,
 } from "drizzle-orm/pg-core";
 import type { AdapterAccount } from "next-auth/adapters";
-import { createId } from '@paralleldrive/cuid2'
+import { createId } from "@paralleldrive/cuid2";
 
 export const RoleEnum = pgEnum("roles", ["user", "admin"]);
 
 export const users = pgTable("user", {
- id: text("id")
-  .notNull()
-  .primaryKey()
-  .$defaultFn(() => createId()),
+  id: text("id")
+    .notNull()
+    .primaryKey()
+    .$defaultFn(() => createId()),
   name: text("name"),
   email: text("email").notNull(),
   emailVerified: timestamp("emailVerified", { mode: "date" }),
@@ -53,10 +53,43 @@ export const accounts = pgTable(
 export const emailTokens = pgTable(
   "email_tokens",
   {
-    id: text("id").notNull().$defaultFn(() => createId()),
+    id: text("id")
+      .notNull()
+      .$defaultFn(() => createId()),
     token: text("token").notNull(),
     expires: timestamp("expires", { mode: "date" }).notNull(),
     email: text("email").notNull(),
+  },
+  (vt) => ({
+    compoundKey: primaryKey({ columns: [vt.id, vt.token] }),
+  })
+);
+
+export const passwordResetTokens = pgTable(
+  "password_reset_tokens",
+  {
+    id: text("id")
+      .notNull()
+      .$defaultFn(() => createId()),
+    token: text("token").notNull(),
+    expires: timestamp("expires", { mode: "date" }).notNull(),
+    email: text("email").notNull(),
+  },
+  (vt) => ({
+    compoundKey: primaryKey({ columns: [vt.id, vt.token] }),
+  })
+);
+
+export const twoFactorTokens = pgTable(
+  "two_factor_tokens",
+  {
+    id: text("id")
+      .notNull()
+      .$defaultFn(() => createId()),
+    token: text("token").notNull(),
+    expires: timestamp("expires", { mode: "date" }).notNull(),
+    email: text("email").notNull(),
+    userID: text("userID").references(() => users.id, { onDelete: "cascade" }),
   },
   (vt) => ({
     compoundKey: primaryKey({ columns: [vt.id, vt.token] }),

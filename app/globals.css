@@ -1,12 +1,7 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+@tailwind components;
+@tailwind utilities;
 
-  
-
-  
-
-  
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -52,6 +47,10 @@
     --input: 0 0% 14.9%;
     --ring: 0 72.2% 50.6%;
   }
+}
+
+[data-ut-element="button"][data-state="uploading"]::after {
+  @apply bg-primary/50;
 }
 
 /* @layer base {

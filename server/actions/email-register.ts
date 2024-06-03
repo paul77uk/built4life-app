@@ -16,7 +16,6 @@ export const emailRegister = action(
   async ({ email, name, password }) => {
     // we hash the password before storing it in the database
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log(hashedPassword);
 
     // we check if the email already exists in the database
     const existingUser = await db.query.users.findFirst({
@@ -34,24 +33,24 @@ export const emailRegister = action(
         return { success: "Email Confirmation resent" };
       }
 
-      // Logic for when the user is not registered
-      await db.insert(users).values({
-        email,
-        name,
-      });
-
-      const verificationToken = await generateEmailVerificationToken(email);
-      await sendVerificationEmail(
-        verificationToken[0].email,
-        verificationToken[0].token
-      );
-      await sendVerificationEmail(
-        verificationToken[0].email,
-        verificationToken[0].token
-      );
-
       return { error: "Email already exists" };
     }
+
+    await db.insert(users).values({
+      email,
+      name,
+      password: hashedPassword,
+    });
+
+    const verificationToken = await generateEmailVerificationToken(email);
+    await sendVerificationEmail(
+      verificationToken[0].email,
+      verificationToken[0].token
+    );
+    await sendVerificationEmail(
+      verificationToken[0].email,
+      verificationToken[0].token
+    );
 
     return { success: "Confirmation Email Sent!" };
   }
