@@ -10,6 +10,17 @@ import { eq } from "drizzle-orm";
 import bcrypt from "bcrypt";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  cookies: {
+    pkceCodeVerifier: {
+      name: "next-auth.pkce.code_verifier",
+      options: {
+        httpOnly: true,
+        sameSite: "none",
+        path: "/",
+        secure: true,
+      },
+    },
+  },
   adapter: DrizzleAdapter(db),
   secret: process.env.AUTH_SECRET!,
   session: { strategy: "jwt" },
@@ -19,10 +30,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (session.user && token.role) session.user.role = token.role as string;
       if (session.user) {
         session.user.isTwoFactorEnabled = token.isTwoFactorEnabled as boolean;
-        session.user.name = token.name
-        session.user.email = token.email as string
-        session.user.isOAuth = token.isOAuth as boolean
-        session.user.image = token.image as string
+        session.user.name = token.name;
+        session.user.email = token.email as string;
+        session.user.isOAuth = token.isOAuth as boolean;
+        session.user.image = token.image as string;
       }
       return session;
     },
