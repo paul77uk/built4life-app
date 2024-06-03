@@ -6,7 +6,7 @@ import Github from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
 import { LoginSchema } from "@/types/login-schema";
 import { accounts, users } from "./schema";
-import { eq } from "drizzle-orm";
+import { and, eq, isNotNull } from "drizzle-orm";
 import bcrypt from "bcrypt";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
@@ -64,7 +64,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           const { email, password } = validatedFields.data;
 
           const user = await db.query.users.findFirst({
-            where: eq(users.email, email),
+            where: and(eq(users.email, email), isNotNull(users.password)),
           });
 
           if (!user || !user.password) return null;
