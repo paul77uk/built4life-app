@@ -10,35 +10,6 @@ import { eq } from "drizzle-orm";
 import bcrypt from "bcrypt";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  cookies: {
-    sessionToken: {
-      name: "next-auth.session-token",
-      options: {
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        secure: process.env.NODE_ENV === "production",
-      },
-    },
-    callbackUrl: {
-      name: "next-auth.callback-url",
-      options: {
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        secure: process.env.NODE_ENV === "production",
-      },
-    },
-    csrfToken: {
-      name: "next-auth.csrf-token",
-      options: {
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        secure: process.env.NODE_ENV === "production",
-      },
-    },
-  },
   adapter: DrizzleAdapter(db),
   secret: process.env.AUTH_SECRET!,
   session: { strategy: "jwt" },
