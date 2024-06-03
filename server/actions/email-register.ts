@@ -2,7 +2,7 @@
 
 import { users } from "./../schema";
 import { RegisterSchema } from "@/types/register-schema";
-import { and, eq, isNull } from "drizzle-orm";
+import { and, eq, isNotNull, isNull } from "drizzle-orm";
 import { createSafeActionClient } from "next-safe-action";
 import { db } from "..";
 import bcrypt from "bcrypt";
@@ -19,14 +19,14 @@ export const emailRegister = action(
 
     // we check if the email already exists in the database
     const existingUser = await db.query.users.findFirst({
-      where: eq(users.email, email),
+      where: and(eq(users.email, email), isNotNull(users.password)),
     });
 
     const existingUserAndNull = await db.query.users.findFirst({
       where: and(isNull(users.password), eq(users.email, email)),
     });
 
-    if (existingUser && !existingUserAndNull) {
+    if (existingUser) {
       if (!existingUser.emailVerified) {
         const verificationToken = await generateEmailVerificationToken(email);
         await sendVerificationEmail(
@@ -40,6 +40,23 @@ export const emailRegister = action(
       return { error: "Email already exists" };
     }
 
+    if (existingUserAndNull) {
+      await db
+        .update(users)
+        .set({
+          password: hashedPassword,
+        })
+        .where(eq(users.email, email));
+
+      const verificationToken = await generateEmailVerificationToken(email);
+      await sendVerificationEmail(
+        verificationToken[0].email,
+        verificationToken[0].token
+      );
+
+      return { success: "Confirmation Email Sent!" };
+    }
+
     await db.insert(users).values({
       email,
       name,
@@ -47,10 +64,6 @@ export const emailRegister = action(
     });
 
     const verificationToken = await generateEmailVerificationToken(email);
-    await sendVerificationEmail(
-      verificationToken[0].email,
-      verificationToken[0].token
-    );
     await sendVerificationEmail(
       verificationToken[0].email,
       verificationToken[0].token
