@@ -2,7 +2,7 @@
 
 import { users } from "./../schema";
 import { RegisterSchema } from "@/types/register-schema";
-import { eq } from "drizzle-orm";
+import { and, eq, isNull } from "drizzle-orm";
 import { createSafeActionClient } from "next-safe-action";
 import { db } from "..";
 import bcrypt from "bcrypt";
@@ -22,7 +22,11 @@ export const emailRegister = action(
       where: eq(users.email, email),
     });
 
-    if (existingUser) {
+    const existingUserAndNull = await db.query.users.findFirst({
+      where: and(isNull(users.password), eq(users.email, email)),
+    });
+
+    if (existingUser && !existingUserAndNull) {
       if (!existingUser.emailVerified) {
         const verificationToken = await generateEmailVerificationToken(email);
         await sendVerificationEmail(
