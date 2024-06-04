@@ -41,12 +41,11 @@ export const emailRegister = action(
     }
 
     if (existingUserAndNull) {
-      await db
-        .update(users)
-        .set({
-          password: hashedPassword,
-        })
-        .where(eq(users.email, email));
+      await db.insert(users).values({
+        email,
+        name,
+        password: hashedPassword,
+      });
 
       const verificationToken = await generateEmailVerificationToken(email);
       await sendVerificationEmail(
