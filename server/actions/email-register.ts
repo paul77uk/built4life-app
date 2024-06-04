@@ -36,7 +36,7 @@ export const emailRegister = action(
       return { error: "Email already exists" };
     }
 
-    await db.delete(users).where(and(eq(users.email, email)));
+    await db.delete(users).where(eq(users.email, email));
 
     await db.insert(users).values({
       email,
