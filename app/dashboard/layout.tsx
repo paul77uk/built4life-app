@@ -1,4 +1,4 @@
-import { BarChart, Book, BookOpenText, Dumbbell, Medal, PenSquare, Settings } from "lucide-react";
+import { BarChart, BookOpenText, Dumbbell, Medal, PenSquare, Settings } from "lucide-react";
 
 import DashboardNav from "@/components/navigation/dashboard-nav";
 

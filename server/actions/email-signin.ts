@@ -3,7 +3,7 @@
 import { createSafeActionClient } from "next-safe-action";
 import { LoginSchema } from "@/types/login-schema";
 import { db } from "..";
-import { and, eq, isNotNull } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { twoFactorTokens, users } from "../schema";
 import {
   generateEmailVerificationToken,
@@ -21,7 +21,7 @@ export const emailSignIn = action(
   async ({ email, password, code }) => {
     try {
       const existingUser = await db.query.users.findFirst({
-        where: and(eq(users.email, email), isNotNull(users.password)),
+        where: eq(users.email, email),
       });
 
       if (existingUser?.email !== email) {

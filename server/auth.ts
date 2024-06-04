@@ -6,13 +6,14 @@ import Github from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
 import { LoginSchema } from "@/types/login-schema";
 import { accounts, users } from "./schema";
-import { and, eq, isNotNull } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import bcrypt from "bcrypt";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: DrizzleAdapter(db),
   secret: process.env.AUTH_SECRET,
   session: { strategy: "jwt" },
+
   callbacks: {
     async session({ session, token }) {
       if (session && token.sub) session.user.id = token.sub;
@@ -64,7 +65,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           const { email, password } = validatedFields.data;
 
           const user = await db.query.users.findFirst({
-            where: and(eq(users.email, email), isNotNull(users.password)),
+            where: eq(users.email, email),
           });
 
           if (!user || !user.password) return null;
