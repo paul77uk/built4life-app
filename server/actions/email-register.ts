@@ -19,7 +19,7 @@ export const emailRegister = action(
 
     // we check if the email already exists in the database
     const existingUser = await db.query.users.findFirst({
-      where: eq(users.email, email),
+      where: and(eq(users.email, email), isNotNull(users.password)),
     });
 
     const existingUserAndNull = await db.query.users.findFirst({
