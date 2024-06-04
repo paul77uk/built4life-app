@@ -22,9 +22,9 @@ export const emailRegister = action(
       where: and(eq(users.email, email), isNotNull(users.password)),
     });
 
-    const existingUserAndNull = await db.query.users.findFirst({
-      where: and(isNull(users.password), eq(users.email, email)),
-    });
+    // const existingUserAndNull = await db.query.users.findFirst({
+    //   where: and(isNull(users.password), eq(users.email, email)),
+    // });
 
     if (existingUser) {
       if (!existingUser.emailVerified) {
@@ -40,21 +40,21 @@ export const emailRegister = action(
       return { error: "Email already exists" };
     }
 
-    if (existingUserAndNull) {
-      await db.insert(users).values({
-        email,
-        name,
-        password: hashedPassword,
-      });
+    // if (existingUserAndNull) {
+    //   await db.insert(users).values({
+    //     email,
+    //     name,
+    //     password: hashedPassword,
+    //   });
 
-      const verificationToken = await generateEmailVerificationToken(email);
-      await sendVerificationEmail(
-        verificationToken[0].email,
-        verificationToken[0].token
-      );
+    //   const verificationToken = await generateEmailVerificationToken(email);
+    //   await sendVerificationEmail(
+    //     verificationToken[0].email,
+    //     verificationToken[0].token
+    //   );
 
-      return { success: "Confirmation Email Sent!" };
-    }
+    //   return { success: "Confirmation Email Sent!" };
+    // }
 
     await db.insert(users).values({
       email,
