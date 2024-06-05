@@ -51,12 +51,9 @@ const SettingsCard = (session: SettingsCardProps) => {
 
   const form = useForm<z.infer<typeof SettingsSchema>>({
     defaultValues: {
-      password: undefined,
-      newPassword: undefined,
       name: session.session.user?.name || undefined,
       email: session.session.user?.email || undefined,
       image: session.session.user?.image || undefined,
-      isTwoFactorEnabled: session.session.user?.isTwoFactorEnabled || undefined,
     },
   });
 
@@ -155,71 +152,6 @@ const SettingsCard = (session: SettingsCardProps) => {
                       type="hidden"
                       disabled={status === "executing"}
                       {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      placeholder="********"
-                      disabled={
-                        status === "executing" || session.session.user.isOAuth
-                      }
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="newPassword"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>New Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      placeholder="********"
-                      disabled={
-                        status === "executing" || session.session.user.isOAuth
-                      }
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="isTwoFactorEnabled"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Two Factor Authentication</FormLabel>
-                  <FormDescription>
-                    Enable two factor authentication for your account
-                  </FormDescription>
-                  <FormControl>
-                    <Switch
-                      disabled={
-                        status === "executing" || session.session.user.isOAuth
-                      }
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
                     />
                   </FormControl>
                   <FormMessage />

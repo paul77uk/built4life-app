@@ -1,6 +1,4 @@
 const Page = () => {
-  return (
-    <div>Create</div>
-  )
-}
-export default Page
+  return <div>Create</div>;
+};
+export default Page;
