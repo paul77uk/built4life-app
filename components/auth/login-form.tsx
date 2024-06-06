@@ -23,6 +23,7 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { FormSuccess } from "./form-success";
 import { FormError } from "./form-error";
+import { Separator } from "../ui/separator";
 
 export const LoginForm = () => {
   const form = useForm<z.infer<typeof LoginSchema>>({
@@ -50,7 +51,7 @@ export const LoginForm = () => {
     <AuthCard
       backButtonHref=""
       backButtonLabel=""
-      cardTitle="Welcome back!"
+      cardTitle="Log in"
       showSocials
     >
       <div>
@@ -66,6 +67,7 @@ export const LoginForm = () => {
                       <FormLabel>Email</FormLabel>
                       <FormControl>
                         <Input
+                          className="border-secondary-foreground/50 focus:border-0"
                           {...field}
                           placeholder="developedbyed@gmail.com"
                           type="email"
@@ -89,10 +91,15 @@ export const LoginForm = () => {
                 status === "executing" ? "animate-pulse" : ""
               )}
             >
-              Sign In
+              Continue with email
             </Button>
           </form>
         </Form>
+      </div>
+      <div className="flex items-center gap-4 text-secondary-foreground/75 pt-3 pb-2">
+        <div className="border border-secondary-foreground/25 flex-1" />
+        <div className="text-xs">OR</div>
+        <div className="border border-secondary-foreground/25 flex-1" />
       </div>
     </AuthCard>
   );
