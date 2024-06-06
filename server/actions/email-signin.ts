@@ -12,10 +12,10 @@ export const emailSignIn = action(LoginSchema, async ({ email }) => {
     // sign in with magic link
     await signIn("resend", {
       email,
-      redirect: false,
+      redirectTo: "/",
     });
 
-    return { success: email };
+    return { success: "Check your email for a sign in link"};
   } catch (error) {
     console.error(error);
     if (error instanceof AuthError) {
