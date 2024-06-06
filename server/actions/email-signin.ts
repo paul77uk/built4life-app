@@ -1,3 +1,4 @@
+import { redirect } from 'next/navigation';
 "use server";
 
 import { createSafeActionClient } from "next-safe-action";
@@ -12,6 +13,7 @@ export const emailSignIn = action(LoginSchema, async ({ email }) => {
     // sign in with magic link
     await signIn("resend", {
       email,
+      redirect: false,
       redirectTo: "/",
     });
 
