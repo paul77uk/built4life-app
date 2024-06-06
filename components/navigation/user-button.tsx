@@ -34,7 +34,9 @@ export const UserButton = ({ user }: Session) => {
             {!user.image && (
               <AvatarFallback className="bg-primary text-white">
                 <div className="font-bold">
-                  {user.name?.charAt(0).toUpperCase()}
+                  {user.name
+                    ? user.name.charAt(0).toUpperCase()
+                    : user.email?.charAt(0).toUpperCase()}
                 </div>
               </AvatarFallback>
             )}
@@ -45,7 +47,7 @@ export const UserButton = ({ user }: Session) => {
             {user.image && (
               <Image
                 src={user.image}
-                alt={user.name!}
+                alt="User Image"
                 width={36}
                 height={36}
                 className="rounded-full"
