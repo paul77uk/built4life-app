@@ -24,7 +24,7 @@ To use the table we need to go back to our `index.ts` file in the `server` folde
 we need to add:
 
 ```bash
-import \* as schema from './schema';
+import * as schema from './schema';
 ```
 
 and then alter the last line to:
