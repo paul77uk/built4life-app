@@ -34,6 +34,7 @@ import {
 
 import type { AdapterAccountType } from "next-auth/adapters";
 
+[comment]: Comment text
 // defaultFn: () => crypto.randomUUID() is a function that generates a random UUID for the id column
 // uuid's are used to uniquely identify a user, this is a common practice in databases, the id's are longer and harder to guess than a simple number, they use a combination of numbers and letters.
 // serial would be a simple number that increments by 1 each time a new user is created, but we want more security so we use a UUID
