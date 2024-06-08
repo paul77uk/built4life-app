@@ -43,12 +43,6 @@ npm run db:push
 
 if you see `Is account table created or renamed from another table?` just press enter, I think it just creates them over wiping the users table in this case, which I don't think matters at the moment.
 
-then back in out `auth.ts` file under `secret: process.env.AUTH_SECRET!,` add:
-
-```bash
-session: { strategy: "jwt" },
-```
-
 and now if we go to: http://localhost:3000/api/auth/signin we should see our sign in providers.
 
 and we should be able to sign in, and if successful it should redirect to our current home page, and if we go to https://local.drizzle.studio/ and refresh the page, we should have a new account and user in our database.
