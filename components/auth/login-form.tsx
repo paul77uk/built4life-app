@@ -23,7 +23,6 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { FormSuccess } from "./form-success";
 import { FormError } from "./form-error";
-import { Separator } from "../ui/separator";
 
 export const LoginForm = () => {
   const form = useForm<z.infer<typeof LoginSchema>>({

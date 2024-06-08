@@ -1,4 +1,11 @@
-import { BarChart, BookOpenText, Dumbbell, Medal, PenSquare, Settings } from "lucide-react";
+import {
+  BarChart,
+  BookOpenText,
+  Dumbbell,
+  Medal,
+  PenSquare,
+  Settings,
+} from "lucide-react";
 
 import DashboardNav from "@/components/navigation/dashboard-nav";
 
@@ -9,21 +16,6 @@ export default async function DashboardLayout({
 }) {
   const links = [
     {
-      label: "Charts",
-      path: "/dashboard/charts",
-      icon: <BarChart size={16} />,
-    },
-    {
-      label: "History",
-      path: "/dashboard/history",
-      icon: <BookOpenText size={16} />,
-    },
-    {
-      label: "Records",
-      path: "/dashboard/records",
-      icon: <Medal size={16} />,
-    },
-    {
       label: "Create",
       path: "/dashboard/create",
       icon: <PenSquare size={16} />,
@@ -32,6 +24,22 @@ export default async function DashboardLayout({
       label: "Workouts",
       path: "/dashboard/workouts",
       icon: <Dumbbell size={16} />,
+    },
+
+    {
+      label: "Records",
+      path: "/dashboard/records",
+      icon: <Medal size={16} />,
+    },
+    {
+      label: "History",
+      path: "/dashboard/history",
+      icon: <BookOpenText size={16} />,
+    },
+    {
+      label: "Charts",
+      path: "/dashboard/charts",
+      icon: <BarChart size={16} />,
     },
 
     {

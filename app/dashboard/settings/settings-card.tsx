@@ -110,7 +110,9 @@ const SettingsCard = (session: SettingsCardProps) => {
                   <div className="flex items-center gap-4">
                     {!form.getValues("image") && (
                       <div className="flex items-center justify-center font-bold bg-primary w-8 h-8 rounded-full text-white">
-                        {session.session.user?.name?.charAt(0).toUpperCase()}
+                        {session.session.user.name
+                          ? session.session.user.name.charAt(0).toUpperCase()
+                          : session.session.user.email?.charAt(0).toUpperCase()}
                       </div>
                     )}
                     {form.getValues("image") && (

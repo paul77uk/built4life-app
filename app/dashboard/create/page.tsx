@@ -1,4 +1,6 @@
+import CreateForm from "./create-form";
+
 const Page = () => {
-  return <div>Create</div>;
+  return <CreateForm />;
 };
 export default Page;
