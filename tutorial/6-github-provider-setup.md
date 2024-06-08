@@ -15,5 +15,5 @@ We need 2, one for local which we just did and then one for production, which we
 
 then we copy the `client id`
 
-go to `.env.local` file and paste it next to `GITHUB_ID=`
-then `generate a new client secret` and paste that next to `GITHUB_SECRET=`
+go to `.env.local` file and paste it next to `AUTH_GITHUB_ID=`
+then `generate a new client secret` and paste that next to `AUTH_GITHUB_SECRET=`
