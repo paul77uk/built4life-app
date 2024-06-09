@@ -16,11 +16,6 @@ export default async function DashboardLayout({
 }) {
   const links = [
     {
-      label: "Create",
-      path: "/dashboard/create",
-      icon: <PenSquare size={16} />,
-    },
-    {
       label: "Workouts",
       path: "/dashboard/workouts",
       icon: <Dumbbell size={16} />,

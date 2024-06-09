@@ -9,6 +9,7 @@ import {
 } from "drizzle-orm/pg-core";
 
 import type { AdapterAccountType } from "next-auth/adapters";
+import { number } from "zod";
 
 // defaultFn: () => crypto.randomUUID() is a function that generates a random UUID for the id column
 // uuid's are used to uniquely identify a user, this is a common practice in databases, the id's are longer and harder to guess than a simple number, they use a combination of numbers and letters.
@@ -93,10 +94,25 @@ export const authenticators = pgTable(
 );
 
 export const workouts = pgTable("workout", {
-  id: serial("id").primaryKey(),
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
   title: text("title"),
+  weeks: integer("weeks"),
   userId: text("userId")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
+  created: timestamp("created").defaultNow(),
+});
+
+// have to remember serial id is serial while uuid is a string
+export const weeks = pgTable("week", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  amount: text("amount"),
+  workoutId: text("workoutId")
+    .notNull()
+    .references(() => workouts.id, { onDelete: "cascade" }),
   created: timestamp("created").defaultNow(),
 });
