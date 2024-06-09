@@ -3,7 +3,6 @@ import {
   BookOpenText,
   Dumbbell,
   Medal,
-  PenSquare,
   Settings,
 } from "lucide-react";
 
@@ -20,7 +19,6 @@ export default async function DashboardLayout({
       path: "/dashboard/workouts",
       icon: <Dumbbell size={16} />,
     },
-
     {
       label: "Records",
       path: "/dashboard/records",

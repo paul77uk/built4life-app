@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import {
   boolean,
   timestamp,
@@ -98,7 +99,6 @@ export const workouts = pgTable("workout", {
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
   title: text("title"),
-  weeks: integer("weeks"),
   userId: text("userId")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
@@ -106,13 +106,36 @@ export const workouts = pgTable("workout", {
 });
 
 // have to remember serial id is serial while uuid is a string
+// but I changed serials to uuids as was causing some errors with drizzle
 export const weeks = pgTable("week", {
   id: text("id")
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
-  amount: text("amount"),
+  number: text("number"),
   workoutId: text("workoutId")
     .notNull()
     .references(() => workouts.id, { onDelete: "cascade" }),
   created: timestamp("created").defaultNow(),
 });
+
+export const weeksRelations = relations(weeks, ({ many }) => ({
+  days: many(days),
+}));
+
+export const days = pgTable("day", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  number: text("number"),
+  weekId: text("weekId")
+    .notNull()
+    .references(() => weeks.id, { onDelete: "cascade" }),
+  created: timestamp("created").defaultNow(),
+});
+
+export const daysRelations = relations(days, ({ one }) => ({
+  week: one(weeks, {
+    fields: [days.weekId],
+    references: [weeks.id],
+  }),
+}));

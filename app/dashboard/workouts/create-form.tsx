@@ -61,6 +61,7 @@ const CreateForm = () => {
     },
     onSettled: () => {
       toast.dismiss();
+      form.reset();
     },
   });
 
@@ -100,7 +101,7 @@ const CreateForm = () => {
                 />
                 <FormField
                   control={form.control}
-                  name="weeks"
+                  name="totalWeeks"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Number of weeks</FormLabel>
