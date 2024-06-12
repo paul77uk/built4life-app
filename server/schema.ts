@@ -139,3 +139,14 @@ export const daysRelations = relations(days, ({ one }) => ({
     references: [weeks.id],
   }),
 }));
+
+export const exercises = pgTable("exercise", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  name: text("name"),
+  dayId: text("dayId")
+    .notNull()
+    .references(() => days.id, { onDelete: "cascade" }),
+  created: timestamp("created").defaultNow(),
+});

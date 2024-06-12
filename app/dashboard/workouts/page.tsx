@@ -22,7 +22,7 @@ const Page = async () => {
     <>
       <CreateForm />
       {workoutData.map((workout) => (
-        <Link key={workout.id} href={`/dashboard/workouts/${workout.id}`}>
+        <Link key={workout.id} href={`/dashboard/day/${workout.id}`}>
           <Card className="mt-3" key={workout.id}>
             <CardHeader>
               <CardTitle className="text-md">{workout.title}</CardTitle>
