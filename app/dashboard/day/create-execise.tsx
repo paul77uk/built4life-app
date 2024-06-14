@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/form";
 import { useAction } from "next-safe-action/hooks";
 import { createWorkout } from "@/server/actions/create-workout";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import {
   Dialog,
@@ -37,17 +37,47 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { exerciseSchema } from "@/types/exercise-schema";
+import { createExercise } from "@/server/actions/create-exercises";
+import { useClientStore } from "@/lib/client-store";
+import { useQuery } from "@tanstack/react-query";
+import { Plus } from "lucide-react";
 
 const CreateExercise = () => {
-  const form = useForm<z.infer<typeof workoutSchema>>({
-    resolver: zodResolver(workoutSchema),
+  type Exercise = {
+    id: string;
+    name: string;
+    dayId: string;
+  };
+
+  type Day = {
+    id: string;
+  };
+
+  // const { data } = useQuery<Exercise[]>({
+  //   queryKey: ["exercises"],
+  // });
+
+  const { data } = useQuery<Day>({
+    queryKey: ["day"],
+  });
+
+  // console.log("ddd", data);
+
+  const { workoutId } = useParams();
+
+  // const { dayId } = useClientStore();
+
+  const form = useForm<z.infer<typeof exerciseSchema>>({
+    resolver: zodResolver(exerciseSchema),
     defaultValues: {
-      title: "",
+      workoutId: workoutId as string,
+      name: "",
+      dayId: data?.id as string,
     },
     mode: "onChange",
   });
-
-  const { execute, status } = useAction(createWorkout, {
+  const { execute, status } = useAction(createExercise, {
     onSuccess(data) {
       if (data?.error) toast.error(data.error);
       if (data?.success) {
@@ -55,7 +85,7 @@ const CreateExercise = () => {
       }
     },
     onExecute: (data) => {
-      toast.loading("Creating workout...");
+      toast.loading("Creating Exercise...");
     },
     onSettled: () => {
       toast.dismiss();
@@ -63,76 +93,68 @@ const CreateExercise = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof workoutSchema>) => {
+  const onSubmit = (values: z.infer<typeof exerciseSchema>) => {
+    values.dayId = data?.id as string;
+    console.log(values);
     execute(values);
   };
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button>Add Workout</Button>
-      </DialogTrigger>
-      <DialogContent className="max-w-[425px] ">
-        <Card className="border-0">
-          <CardHeader>
-            <CardTitle>Create Workout</CardTitle>
-            {/* <CardDescription>Card Description</CardDescription> */}
-          </CardHeader>
-          <CardContent>
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-4"
-              >
-                <FormField
-                  control={form.control}
-                  name="title"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Workout Title</FormLabel>
-                      <FormControl>
-                        <Input placeholder="workout title" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="totalWeeks"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Number of weeks</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="number of weeks"
-                          {...field}
-                          type="number"
-                          min={0}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <DialogClose asChild>
-                  <Button
-                    // isDirty is a hook that returns true if the form has been modified
-                    disabled={
-                      status === "executing" || !form.formState.isValid
-                      // || !form.formState.isDirty
-                    }
-                    type="submit"
+    <>
+      {data && (
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button>
+              Add Exercise
+              <Plus className="ml-2"/>
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="max-w-[425px] ">
+            <Card className="border-0">
+              <CardHeader>
+                <CardTitle>Create Exercise</CardTitle>
+                {/* <CardDescription>Card Description</CardDescription> */}
+              </CardHeader>
+              <CardContent>
+                <Form {...form}>
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-4"
                   >
-                    Submit
-                  </Button>
-                </DialogClose>
-              </form>
-            </Form>
-          </CardContent>
-        </Card>
-      </DialogContent>
-    </Dialog>
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Exercise Name</FormLabel>
+                          <FormControl>
+                            <Input placeholder="exercise name" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <DialogClose>
+                      <Button
+                        // isDirty is a hook that returns true if the form has been modified
+                        disabled={
+                          status === "executing" || !form.formState.isValid
+                          // || !form.formState.isDirty
+                        }
+                        type="submit"
+                      >
+                        Submit
+                      </Button>
+                    </DialogClose>
+                  </form>
+                </Form>
+              </CardContent>
+            </Card>
+          </DialogContent>
+        </Dialog>
+      )}
+    </>
   );
 };
 export default CreateExercise;

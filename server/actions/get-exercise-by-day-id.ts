@@ -6,6 +6,9 @@ import { exercises } from "../schema";
 
 export const getExerciseByDayId = async ({ dayId }: { dayId: string }) => {
   const exerciseData = await db.query.exercises.findMany({
+    with: {
+      sets: true,
+    },
     where: eq(exercises.dayId, dayId),
   });
 

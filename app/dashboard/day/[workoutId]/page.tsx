@@ -5,46 +5,44 @@ import { eq } from "drizzle-orm";
 
 import Link from "next/link";
 import DayBtn from "../day-btn";
-import DayPage from "../page";
 
-type WorkoutPageParams = {
-  params: {
-    workoutId: string;
-  };
-};
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { getWeeksByWorkoutId } from "@/server/actions/get-weeks-by-workout-id";
 
-const WorkoutPage = async ({ params }: WorkoutPageParams) => {
-  const { workoutId } = params;
-  const weeksData = await db.query.weeks.findMany({
-    with: {
-      days: true,
-    },
-    where: eq(weeks.workoutId, workoutId),
-  });
+import { useParams, useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";
+import { use } from "react";
+import ExercisePage from "../../exercises/[dayId]/page";
 
-  return (
-    <main className="flex gap-5">
-      <div className="flex flex-col gap-3">
-        {weeksData.map((week) => (
-          <div key={week.id}>
-            <Button>Week {week.number}</Button>
-            <div className="flex flex-col gap-2 pt-2">
-              {week.days.map((day) => (
-                <div key={day.id}>
-                 <DayBtn dayNumber={day.number} dayId={day.id} />
-                  {/* <ul>
-                    {day.exercises.map((exercise) => (
-                      <li key={exercise.id}>{exercise.name}</li>
-                    ))}
-                  </ul> */}
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-      <div><DayPage/></div>
-    </main>
-  );
+// type Params = {
+//   workoutId: string;
+// };
+
+const WorkoutPage = () => {
+  // const params = useParams();
+  // const workoutId = params.workoutId as string;
+  // console.log("workoutId", workoutId);
+
+  // const { setDayId } = useClientStore();
+
+  // const { data } = useQuery({
+  //   queryKey: ["weeks"],
+  //   queryFn: () => getWeeksByWorkoutId({ workoutId }),
+  // });
+
+  // console.log("weeksData", data);
+
+  // const weeksData = async () => {
+
+  //   await db.query.weeks.findMany({
+  //     with: {
+  //       days: true,
+  //     },
+  //     where: eq(weeks.workoutId, workoutId as string),
+  //   });
+  // };
+
+  // console.log("weeksData", weeksData);
+  return <ExercisePage />;
 };
 export default WorkoutPage;
