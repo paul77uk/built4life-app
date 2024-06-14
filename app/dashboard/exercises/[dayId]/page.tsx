@@ -57,9 +57,9 @@ const ExercisePage = () => {
     <main>
       <CreateExercise/>
       {data ? (
-        <div className="mt-3">
+        <div className="mt-3.5">
           {data.map((exercise) => (
-            <div className="pb-4" key={exercise.id}>
+            <div className="mb-4" key={exercise.id}>
               <Button className="w-full  border-secondary-foreground border-t border-x rounded-b-none">
                 {exercise.name}
               </Button>
