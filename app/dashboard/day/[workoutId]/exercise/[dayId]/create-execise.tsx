@@ -44,27 +44,13 @@ import { useQuery } from "@tanstack/react-query";
 import { Plus } from "lucide-react";
 
 const CreateExercise = () => {
-  type Exercise = {
-    id: string;
-    name: string;
-    dayId: string;
-  };
 
-  type Day = {
-    id: string;
-  };
 
-  // const { data } = useQuery<Exercise[]>({
-  //   queryKey: ["exercises"],
-  // });
-
-  const { data } = useQuery<Day>({
-    queryKey: ["day"],
-  });
+  
 
   // console.log("ddd", data);
 
-  const { workoutId } = useParams();
+  const { workoutId, dayId } = useParams();
 
   // const { dayId } = useClientStore();
 
@@ -73,7 +59,7 @@ const CreateExercise = () => {
     defaultValues: {
       workoutId: workoutId as string,
       name: "",
-      dayId: data?.id as string,
+      dayId: dayId as string,
     },
     mode: "onChange",
   });
@@ -94,19 +80,18 @@ const CreateExercise = () => {
   });
 
   const onSubmit = (values: z.infer<typeof exerciseSchema>) => {
-    values.dayId = data?.id as string;
     console.log(values);
     execute(values);
   };
 
   return (
     <>
-      {data && (
+      {dayId && (
         <Dialog>
           <DialogTrigger asChild>
             <Button>
               Add Exercise
-              <Plus className="ml-2"/>
+              <Plus className="ml-2" />
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-[425px] ">

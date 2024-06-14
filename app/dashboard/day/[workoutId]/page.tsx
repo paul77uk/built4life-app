@@ -43,6 +43,6 @@ const WorkoutPage = () => {
   // };
 
   // console.log("weeksData", weeksData);
-  return <ExercisePage />;
+  return <div>Choose a Day</div>
 };
 export default WorkoutPage;

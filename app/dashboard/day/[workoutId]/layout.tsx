@@ -34,10 +34,10 @@ export default async function DayLayout({
             <div className="flex flex-col gap-2 pt-2">
               {week.days.map((day) => (
                 <div key={day.id}>
-                  <DayBtn dayNumber={day.number} dayId={day.id} />
-                  {/* <Link href={`/dashboard/exercises/${day.id}`}>
+                  {/* <DayBtn dayNumber={day.number} dayId={day.id} /> */}
+                  <Link href={`/dashboard/day/${workoutId}/exercise/${day.id}`}>
                     <Button>Day {day.number} </Button>
-                  </Link> */}
+                  </Link>
                   {/* <ul>
                     {day.exercises.map((exercise) => (
                       <li key={exercise.id}>{exercise.name}</li>

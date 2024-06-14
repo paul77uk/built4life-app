@@ -2,13 +2,13 @@
 
 import { db } from "@/server";
 import { useParams } from "next/navigation";
-import { DataTable } from "../data-table";
+import { DataTable } from "../../day/[workoutId]/exercise/data-table";
 import { eq } from "drizzle-orm";
 import { sets } from "@/server/schema";
-import { columns } from "../columns";
+import { columns } from "../../day/[workoutId]/exercise/columns";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import CreateExercise from "../../day/create-execise";
+import CreateExercise from "../../day/[workoutId]/exercise/[dayId]/create-execise";
 
 type Exercise = {
   id: string;
@@ -55,7 +55,7 @@ const ExercisePage = () => {
 
   return (
     <main>
-      <CreateExercise/>
+      <CreateExercise />
       {data ? (
         <div className="mt-3.5">
           {data.map((exercise) => (

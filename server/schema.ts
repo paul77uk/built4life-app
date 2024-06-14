@@ -133,11 +133,12 @@ export const days = pgTable("day", {
   created: timestamp("created").defaultNow(),
 });
 
-export const daysRelations = relations(days, ({ one }) => ({
+export const daysRelations = relations(days, ({ one, many }) => ({
   week: one(weeks, {
     fields: [days.weekId],
     references: [weeks.id],
   }),
+  exercises: many(exercises),
 }));
 
 export const exercises = pgTable("exercise", {
@@ -151,7 +152,11 @@ export const exercises = pgTable("exercise", {
   created: timestamp("created").defaultNow(),
 });
 
-export const exercisesRelations = relations(exercises, ({ many }) => ({
+export const exercisesRelations = relations(exercises, ({one, many }) => ({
+  day: one(days, {
+    fields: [exercises.dayId],
+    references: [days.id],
+  }),
   sets: many(sets),
 }));
 
