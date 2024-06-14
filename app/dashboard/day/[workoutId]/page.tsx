@@ -12,7 +12,6 @@ import { getWeeksByWorkoutId } from "@/server/actions/get-weeks-by-workout-id";
 import { useParams, useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
 import { use } from "react";
-import ExercisePage from "../../exercises/[dayId]/page";
 
 // type Params = {
 //   workoutId: string;

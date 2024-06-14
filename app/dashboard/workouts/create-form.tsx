@@ -41,13 +41,8 @@ import { Button } from "@/components/ui/button";
 const CreateForm = () => {
   const form = useForm<z.infer<typeof workoutSchema>>({
     resolver: zodResolver(workoutSchema),
-    defaultValues: {
-      title: "",
-    },
-    mode: "onChange",
+   
   });
-
-  const router = useRouter();
 
   const { execute, status } = useAction(createWorkout, {
     onSuccess(data) {
