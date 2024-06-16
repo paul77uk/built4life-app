@@ -1,26 +1,10 @@
 import { DataTable } from "@/app/dashboard/day/[workoutId]/exercise/data-table";
 import { Button } from "@/components/ui/button";
 import { db } from "@/server";
-import { getExerciseByDayId } from "@/server/actions/get-exercise-by-day-id";
 import { days } from "@/server/schema";
 import { eq } from "drizzle-orm";
 import { columns } from "../columns";
 import CreateExercise from "./create-execise";
-
-// type Exercise = {
-//   id: string;
-//   name: string | null;
-//   created: Date | null;
-//   dayId: string;
-//   sets: {
-//     id: string;
-//     created: Date | null;
-//     exerciseId: string;
-//     setNumber: string | null;
-//     weight: string | null;
-//     reps: string | null;
-//   }[];
-// };
 
 type Params = {
   params: {

@@ -4,8 +4,6 @@ import { eq } from "drizzle-orm";
 import { weeks } from "@/server/schema";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import DayBtn from "../day-btn";
-import DayNav from "../day-nav";
 
 type Params = {
   workoutId: string;

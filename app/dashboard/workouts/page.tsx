@@ -5,6 +5,8 @@ import Link from "next/link";
 import CreateForm from "./create-form";
 import { workouts } from "@/server/schema";
 import { eq } from "drizzle-orm";
+import { Delete, Pencil, Trash, Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Page = async () => {
   const session = await auth();
@@ -22,13 +24,25 @@ const Page = async () => {
     <>
       <CreateForm />
       {workoutData.map((workout) => (
-        <Link key={workout.id} href={`/dashboard/day/${workout.id}`}>
+        <div key={workout.id}>
           <Card className="mt-3" key={workout.id}>
             <CardHeader>
-              <CardTitle className="text-md">{workout.title}</CardTitle>
+              <CardTitle className="text-md flex justify-between items-center">
+                <Link href={`/dashboard/day/${workout.id}`}>
+                  {workout.title}
+                </Link>
+                <div className="flex gap-2 ">
+                  <Button className="w-8 h-8 p-0">
+                    <Pencil size={16} />
+                  </Button>
+                  <Button className="w-8 h-8 p-0">
+                    <Trash2 size={16} />
+                  </Button>
+                </div>
+              </CardTitle>
             </CardHeader>
           </Card>
-        </Link>
+        </div>
       ))}
     </>
   );
