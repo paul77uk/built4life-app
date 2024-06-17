@@ -7,6 +7,10 @@ import { workouts } from "@/server/schema";
 import { eq } from "drizzle-orm";
 import { Delete, Pencil, Trash, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAction } from "next-safe-action/hooks";
+import { deleteWorkout } from "@/server/actions/delete-workout";
+import { toast } from "sonner";
+import DeleteWorkoutBtn from "./delete-workout-btn";
 
 const Page = async () => {
   const session = await auth();
@@ -19,6 +23,8 @@ const Page = async () => {
     orderBy: (workouts, { asc }) => [asc(workouts.created)],
   });
   if (!workouts) throw new Error("No workouts found");
+
+  
 
   return (
     <>
@@ -35,9 +41,7 @@ const Page = async () => {
                   <Button className="w-8 h-8 p-0">
                     <Pencil size={16} />
                   </Button>
-                  <Button className="w-8 h-8 p-0">
-                    <Trash2 size={16} />
-                  </Button>
+                  <DeleteWorkoutBtn workout={workout} />
                 </div>
               </CardTitle>
             </CardHeader>
