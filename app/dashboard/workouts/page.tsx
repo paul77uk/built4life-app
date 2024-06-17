@@ -11,6 +11,7 @@ import { useAction } from "next-safe-action/hooks";
 import { deleteWorkout } from "@/server/actions/delete-workout";
 import { toast } from "sonner";
 import DeleteWorkoutBtn from "./delete-workout-btn";
+import EditWorkout from "./edit-workout";
 
 const Page = async () => {
   const session = await auth();
@@ -24,8 +25,6 @@ const Page = async () => {
   });
   if (!workouts) throw new Error("No workouts found");
 
-  
-
   return (
     <>
       <CreateForm />
@@ -38,9 +37,7 @@ const Page = async () => {
                   {workout.title}
                 </Link>
                 <div className="flex gap-2 ">
-                  <Button className="w-8 h-8 p-0">
-                    <Pencil size={16} />
-                  </Button>
+                  <EditWorkout workout={workout} />
                   <DeleteWorkoutBtn workout={workout} />
                 </div>
               </CardTitle>
