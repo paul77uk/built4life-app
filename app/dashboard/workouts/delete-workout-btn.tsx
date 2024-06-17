@@ -47,10 +47,12 @@ const DeleteWorkoutBtn = ({ workout }: WorkoutProps) => {
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you sure you want to delete this workout?</AlertDialogTitle>
+          <AlertDialogTitle>
+            Are you sure you want to delete this workout?
+          </AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. This will permanently delete your
-            workout and all it's data.
+            workout and all it&apos;s data.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

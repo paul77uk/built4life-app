@@ -38,6 +38,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
+import {
+  AlertDialogCancel,
+  AlertDialogContent,
+} from "@/components/ui/alert-dialog";
 
 type Workout = {
   workout: {
@@ -63,12 +67,11 @@ const EditWorkout = ({ workout }: Workout) => {
       }
     },
     onExecute: (data) => {
-      toast.loading("Creating workout...");
+      toast.loading("Editing workout...");
     },
     onSettled: () => {
       toast.dismiss();
-      form.reset();
-    },
+    }
   });
 
   const onSubmit = (values: z.infer<typeof workoutSchema>) => {
