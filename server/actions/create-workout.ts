@@ -12,7 +12,7 @@ const action = createSafeActionClient();
 
 type Workout = {
   title: string;
-  totalWeeks: number;
+  totalWeeks: number | undefined;
   id?: string;
 };
 
@@ -50,7 +50,7 @@ export const createWorkout = action(
       revalidatePath("/dashboard/workouts");
 
       // creates the number of weeks inputed
-      for (let i = 0; i < totalWeeks; i++) {
+      for (let i = 0; i < totalWeeks!; i++) {
         const newWeek = await db
           .insert(weeks)
           .values({
