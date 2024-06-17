@@ -10,9 +10,15 @@ import { revalidatePath } from "next/cache";
 
 const action = createSafeActionClient();
 
+type Workout = {
+  title: string;
+  totalWeeks: number;
+  id?: string;
+};
+
 export const createWorkout = action(
   workoutSchema,
-  async ({ title, totalWeeks, id }) => {
+  async ({ title, totalWeeks, id }: Workout) => {
     const session = await auth();
     const user = session?.user; // get the user from the session
     try {
@@ -69,4 +75,3 @@ export const createWorkout = action(
     }
   }
 );
-
