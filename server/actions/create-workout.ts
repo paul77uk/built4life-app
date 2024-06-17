@@ -12,7 +12,7 @@ const action = createSafeActionClient();
 
 type Workout = {
   title: string;
-  totalWeeks: number | undefined;
+  totalWeeks?: number;
   id?: string;
 };
 
