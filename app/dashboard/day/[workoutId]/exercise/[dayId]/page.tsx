@@ -2,7 +2,7 @@ import { DataTable } from "@/app/dashboard/day/[workoutId]/exercise/data-table";
 import { Button } from "@/components/ui/button";
 import { db } from "@/server";
 import { days } from "@/server/schema";
-import { eq } from "drizzle-orm";
+import { eq, or } from "drizzle-orm";
 import { columns } from "../columns";
 import CreateExercise from "./create-execise";
 import { Pencil, Plus, Trash, Trash2 } from "lucide-react";
@@ -20,7 +20,11 @@ const DayPage = async ({ params }: Params) => {
     where: eq(days.id, params.dayId),
     with: {
       exercises: {
-        with: { sets: true },
+        with: {
+          sets: {
+            orderBy: (sets, { asc }) => [asc(sets.setNumber)],
+          },
+        },
       },
     },
   });
