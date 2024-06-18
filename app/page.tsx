@@ -1,3 +1,7 @@
-export default function Home() {
-  return <main>In development, may have a homepage here, or may just direct to </main>;
-}
+import { redirect } from "next/navigation";
+
+const Home = () => redirect("/dashboard/workouts");
+export default Home;
+
+
+// TODO: will add landing page or keep the redirect
