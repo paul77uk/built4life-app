@@ -5,6 +5,8 @@ import { days } from "@/server/schema";
 import { eq } from "drizzle-orm";
 import { columns } from "../columns";
 import CreateExercise from "./create-execise";
+import { Pencil, Plus, Trash, Trash2 } from "lucide-react";
+import AddSet from "./add-set";
 
 type Params = {
   params: {
@@ -30,8 +32,13 @@ const DayPage = async ({ params }: Params) => {
         <div className="mt-3.5">
           {day.exercises.map((exercise) => (
             <div className="mb-4" key={exercise.id}>
-              <Button className="w-full  border-secondary-foreground border-t border-x rounded-b-none">
+              <Button className="flex justify-between w-full  border-secondary-foreground border-t border-x rounded-b-none">
                 {exercise.name}
+                <div className="flex gap-1 items-center">
+                  <AddSet exercise={exercise} />
+                  <Pencil size={16} />
+                  <Trash2 size={16} />
+                </div>
               </Button>
               <DataTable columns={columns} data={exercise.sets} />
             </div>

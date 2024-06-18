@@ -1,17 +1,9 @@
 "use client";
 
-import { workoutSchema } from "@/types/workout-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -21,38 +13,23 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useAction } from "next-safe-action/hooks";
-import { createWorkout } from "@/server/actions/create-workout";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { toast } from "sonner";
 import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 import { Button } from "@/components/ui/button";
 import { exerciseSchema } from "@/types/exercise-schema";
 import { createExercise } from "@/server/actions/create-exercises";
-import { useClientStore } from "@/lib/client-store";
-import { useQuery } from "@tanstack/react-query";
 import { Plus } from "lucide-react";
 
 const CreateExercise = () => {
-
-
-  
-
-  // console.log("ddd", data);
-
   const { workoutId, dayId } = useParams();
-
-  // const { dayId } = useClientStore();
 
   const form = useForm<z.infer<typeof exerciseSchema>>({
     resolver: zodResolver(exerciseSchema),
