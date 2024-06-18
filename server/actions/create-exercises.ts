@@ -28,6 +28,7 @@ export const createExercise = action(
           .where(eq(exercises.id, id))
           .returning();
         // we call existingWorkout[0] to get the first item in the array, as update(workouts) returns an array
+        revalidatePath(`/dashboard/day/${workoutId}/exercise/${dayId}`);
         return { success: `${existingExercise[0].name} updated` };
       }
       // create the exercise

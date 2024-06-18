@@ -7,6 +7,7 @@ import { columns } from "../columns";
 import CreateExercise from "./create-execise";
 import { Pencil, Plus, Trash, Trash2 } from "lucide-react";
 import AddSet from "./add-set";
+import EditExercise from "./edit-exercise";
 
 type Params = {
   params: {
@@ -20,6 +21,7 @@ const DayPage = async ({ params }: Params) => {
     where: eq(days.id, params.dayId),
     with: {
       exercises: {
+        orderBy: (exercises, { asc }) => [asc(exercises.created)],
         with: {
           sets: {
             orderBy: (sets, { asc }) => [asc(sets.setNumber)],
@@ -38,9 +40,9 @@ const DayPage = async ({ params }: Params) => {
             <div className="mb-4" key={exercise.id}>
               <Button className="flex justify-between w-full  border-secondary-foreground border-t border-x rounded-b-none">
                 {exercise.name}
-                <div className="flex gap-1 items-center">
+                <div className="flex gap-2 items-center">
                   <AddSet exercise={exercise} />
-                  <Pencil size={16} />
+                  <EditExercise exercise={exercise} />
                   <Trash2 size={16} />
                 </div>
               </Button>
