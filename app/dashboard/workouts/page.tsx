@@ -15,7 +15,8 @@ import EditWorkout from "./edit-workout";
 
 const Page = async () => {
   const session = await auth();
-  if (!session) throw new Error("Not authenticated");
+  // if (!session) throw new Error("Not authenticated");
+  if (!session) return null;
   const user = session.user;
 
   const workoutData = await db.query.workouts.findMany({
@@ -23,7 +24,7 @@ const Page = async () => {
     where: eq(workouts.userId, user.id),
     orderBy: (workouts, { asc }) => [asc(workouts.created)],
   });
-  if (!workouts) throw new Error("No workouts found");
+  // if (!workouts) throw new Error("No workouts found");
 
   return (
     <>
