@@ -25,6 +25,8 @@ type Set = {
   reps: string | null;
 };
 
+// TODO: change to are you sure you want to delete this set alert when click on delete, like n the workout page
+
 const ActionCell = ({ row }: { row: Row<Set> }) => {
   const { status, execute } = useAction(deleteSet, {
     onSuccess(data) {
@@ -81,6 +83,6 @@ export const columns: ColumnDef<Set>[] = [
   {
     id: "actions",
     header: "Actions",
-    cell: ActionCell
+    cell: ActionCell,
   },
 ];
