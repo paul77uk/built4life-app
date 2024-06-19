@@ -42,20 +42,18 @@ export default async function DayLayout({
               </AccordionTrigger>
               <div className="flex flex-col my-1">
                 {week.days.map((day) => (
-                  <AccordionContent>
-                    <div key={day.id}>
-                      {/* <DayBtn dayNumber={day.number} dayId={day.id} /> */}
-                      <Link
-                        href={`/dashboard/day/${workoutId}/exercise/${day.id}`}
-                      >
-                        <DayBtn day={day} workoutId={workoutId} />
-                      </Link>
-                      {/* <ul>
+                  <AccordionContent key={day.id}>
+                    {/* <DayBtn dayNumber={day.number} dayId={day.id} /> */}
+                    <Link
+                      href={`/dashboard/day/${workoutId}/exercise/${day.id}`}
+                    >
+                      <DayBtn day={day} workoutId={workoutId} />
+                    </Link>
+                    {/* <ul>
                     {day.exercises.map((exercise) => (
                       <li key={exercise.id}>{exercise.name}</li>
                     ))}
                   </ul> */}
-                    </div>
                   </AccordionContent>
                 ))}
               </div>
