@@ -1,7 +1,6 @@
-'use server'
+"use server";
 
 import { setSchema } from "./../../types/set-schema";
-
 
 import { createSafeActionClient } from "next-safe-action";
 import { db } from "..";
@@ -23,6 +22,14 @@ type SetSchema = {
 export const createSet = action(
   setSchema,
   async ({ id, exerciseId, setNumber, weight, reps }: SetSchema) => {
+    const day = await db.query.days.findFirst({
+      where: eq(sets.id, id as string),
+      with: {
+        exercises: {
+          with: { sets: true },
+        },
+      },
+    });
     try {
       // if wanted to test the error handling, we can throw an error
       // throw new Error("Not implemented");
@@ -40,6 +47,9 @@ export const createSet = action(
           .where(eq(sets.id, id))
           .returning();
         // we call existingWorkout[0] to get the first item in the array, as update(workouts) returns an array
+        revalidatePath(
+          `/dashboard/day/${day?.id}/exercise/${existingSet[0].exerciseId}`
+        );
         return { success: `Set ${existingSet[0].setNumber} updated` };
       }
       // create the exercise
@@ -53,15 +63,7 @@ export const createSet = action(
         })
         // we need to use returning() to get the new exercie
         .returning();
-      //TODO: revalidatePath(`/dashboard/day/${}/exercise/${}`);
-      const day = await db.query.days.findFirst({
-        where: eq(sets.id, id as string),
-        with: {
-          exercises: {
-            with: { sets: true },
-          },
-        },
-      });
+
       revalidatePath(
         `/dashboard/day/${day?.id}/exercise/${newSet[0].exerciseId}`
       );
