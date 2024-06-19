@@ -3,7 +3,7 @@ import { db } from "@/server";
 import { auth } from "@/server/auth";
 import Link from "next/link";
 import CreateForm from "./create-form";
-import { workouts } from "@/server/schema";
+import { days, weeks, workouts } from "@/server/schema";
 import { eq } from "drizzle-orm";
 import { Delete, Pencil, Trash, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -24,6 +24,8 @@ const Page = async () => {
     where: eq(workouts.userId, user.id),
     orderBy: (workouts, { asc }) => [asc(workouts.created)],
   });
+  
+
   // if (!workouts) throw new Error("No workouts found");
 
   return (
@@ -34,7 +36,10 @@ const Page = async () => {
           <Card className="mt-3" key={workout.id}>
             <CardHeader>
               <CardTitle className="text-md flex justify-between items-center">
-                <Link href={`/dashboard/day/${workout.id}`}>
+                {/* TODO: could have it so it links to first day of first week of workout by default */}
+                <Link
+                  href={`/dashboard/day/${workout.id}`}
+                >
                   {workout.title}
                 </Link>
                 <div className="flex gap-2 ">

@@ -1,5 +1,12 @@
 import { db } from "@/server";
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
 import { eq } from "drizzle-orm";
 import { weeks } from "@/server/schema";
 import { Button } from "@/components/ui/button";
@@ -27,26 +34,36 @@ export default async function DayLayout({
   return (
     <main className="flex gap-5">
       <div className="flex flex-col gap-3">
-        {weeksData.map((week) => (
-          <div key={week.id}>
-            <Button>Week {week.number}</Button>
-            <div className="flex flex-col gap-2 pt-2">
-              {week.days.map((day) => (
-                <div key={day.id}>
-                  {/* <DayBtn dayNumber={day.number} dayId={day.id} /> */}
-                  <Link href={`/dashboard/day/${workoutId}/exercise/${day.id}`}>
-                    <DayBtn day={day} workoutId={workoutId}/>
-                  </Link>
-                  {/* <ul>
+        <Accordion type="single" collapsible className="w-full">
+          {weeksData.map((week) => (
+            <AccordionItem value={week.id}>
+              <div key={week.id}>
+                <AccordionTrigger className="flex gap-1 bg-primary py-1.5 px-3 rounded w-full">
+                  <div>Week</div> {week.number}
+                </AccordionTrigger>
+                <div className="flex flex-col my-1">
+                  {week.days.map((day) => (
+                    <AccordionContent>
+                      <div key={day.id}>
+                        {/* <DayBtn dayNumber={day.number} dayId={day.id} /> */}
+                        <Link
+                          href={`/dashboard/day/${workoutId}/exercise/${day.id}`}
+                        >
+                          <DayBtn day={day} workoutId={workoutId} />
+                        </Link>
+                        {/* <ul>
                     {day.exercises.map((exercise) => (
                       <li key={exercise.id}>{exercise.name}</li>
                     ))}
                   </ul> */}
+                      </div>
+                    </AccordionContent>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
-        ))}
+              </div>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </div>
       <div>{children}</div>
     </main>
