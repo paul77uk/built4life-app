@@ -4,6 +4,7 @@ import { eq } from "drizzle-orm";
 import { weeks } from "@/server/schema";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import DayBtn from "./day-btn";
 
 type Params = {
   workoutId: string;
@@ -34,7 +35,7 @@ export default async function DayLayout({
                 <div key={day.id}>
                   {/* <DayBtn dayNumber={day.number} dayId={day.id} /> */}
                   <Link href={`/dashboard/day/${workoutId}/exercise/${day.id}`}>
-                    <Button>Day {day.number} </Button>
+                    <DayBtn day={day} workoutId={workoutId}/>
                   </Link>
                   {/* <ul>
                     {day.exercises.map((exercise) => (
