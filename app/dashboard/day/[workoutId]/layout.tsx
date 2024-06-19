@@ -34,7 +34,12 @@ export default async function DayLayout({
   return (
     <main className="flex gap-5">
       <div className="flex flex-col gap-3">
-        <Accordion type="single" collapsible className="w-full">
+        <Accordion
+          defaultValue={weeksData[0].id}
+          type="single"
+          collapsible
+          className="w-full"
+        >
           {weeksData.map((week) => (
             <AccordionItem value={week.id} key={week.id}>
               <AccordionTrigger className="flex gap-1 bg-primary py-1.5 px-3 rounded w-full">

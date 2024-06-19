@@ -105,6 +105,10 @@ export const workouts = pgTable("workout", {
   created: timestamp("created").defaultNow(),
 });
 
+export const workoutsRelations = relations(workouts, ({ many }) => ({
+  weeks: many(weeks),
+}));
+
 // have to remember serial id is serial while uuid is a string
 // but I changed serials to uuids as was causing some errors with drizzle
 export const weeks = pgTable("week", {
@@ -118,7 +122,11 @@ export const weeks = pgTable("week", {
   created: timestamp("created").defaultNow(),
 });
 
-export const weeksRelations = relations(weeks, ({ many }) => ({
+export const weeksRelations = relations(weeks, ({ one, many }) => ({
+  workout: one(workouts, {
+    fields: [weeks.workoutId],
+    references: [workouts.id],
+  }),
   days: many(days),
 }));
 
@@ -152,7 +160,7 @@ export const exercises = pgTable("exercise", {
   created: timestamp("created").defaultNow(),
 });
 
-export const exercisesRelations = relations(exercises, ({one, many }) => ({
+export const exercisesRelations = relations(exercises, ({ one, many }) => ({
   day: one(days, {
     fields: [exercises.dayId],
     references: [days.id],

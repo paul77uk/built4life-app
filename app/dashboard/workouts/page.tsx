@@ -23,8 +23,17 @@ const Page = async () => {
     // only want the signed in users workout at this point
     where: eq(workouts.userId, user.id),
     orderBy: (workouts, { asc }) => [asc(workouts.created)],
+    with: {
+      weeks: {
+        orderBy: (weeks, { asc }) => [asc(weeks.number)],
+        with: {
+          days: {
+            orderBy: (days, { asc }) => [asc(days.number)],
+          },
+        },
+      },
+    },
   });
-  
 
   // if (!workouts) throw new Error("No workouts found");
 
@@ -36,9 +45,9 @@ const Page = async () => {
           <Card className="mt-3" key={workout.id}>
             <CardHeader>
               <CardTitle className="text-md flex justify-between items-center">
-                {/* TODO: could have it so it links to first day of first week of workout by default */}
+                {/* links to first day of first week of workout by default */}
                 <Link
-                  href={`/dashboard/day/${workout.id}`}
+                  href={`/dashboard/day/${workout.id}/exercise/${workout.weeks[0].days[0].id}`}
                 >
                   {workout.title}
                 </Link>
