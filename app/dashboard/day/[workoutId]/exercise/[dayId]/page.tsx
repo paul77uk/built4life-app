@@ -8,6 +8,7 @@ import CreateExercise from "./create-execise";
 import { Pencil, Plus, Trash, Trash2 } from "lucide-react";
 import AddSet from "./add-set";
 import EditExercise from "./edit-exercise";
+import DeleteExercise from "./delete-exercise";
 
 type Params = {
   params: {
@@ -43,7 +44,7 @@ const DayPage = async ({ params }: Params) => {
                 <div className="flex gap-2 items-center">
                   <AddSet exercise={exercise} />
                   <EditExercise exercise={exercise} />
-                  <Trash2 size={16} />
+                  <DeleteExercise exercise={exercise} />
                 </div>
               </Button>
               <DataTable columns={columns} data={exercise.sets} />
