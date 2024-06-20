@@ -18,8 +18,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       allowDangerousEmailAccountLinking: true,
     }),
     Github({ allowDangerousEmailAccountLinking: true }),
-    // Resend({
-    //   from: "info@built4.life",
-    // }),
+    Resend({
+      from: "info@built4.life",
+    }),
   ],
 });
