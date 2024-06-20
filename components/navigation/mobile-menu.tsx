@@ -28,7 +28,7 @@ const MobileMenu = () => {
         <SheetTrigger>
           <Menu />
         </SheetTrigger>
-        <SheetContent side={"left"}>It work's</SheetContent>
+        <SheetContent side={"left"}>It works</SheetContent>
       </Sheet>
     </span>
   );
