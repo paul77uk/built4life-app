@@ -42,7 +42,7 @@ export default async function DayLayout({
         >
           {weeksData.map((week) => (
             <AccordionItem value={week.id} key={week.id}>
-              <AccordionTrigger className="flex gap-1 bg-primary py-1.5 px-3 rounded w-full">
+              <AccordionTrigger className="flex gap-1 bg-primary py-1.5 px-3 rounded w-full text-white">
                 <div>Week</div> {week.number}
               </AccordionTrigger>
               <div className="flex flex-col my-1">

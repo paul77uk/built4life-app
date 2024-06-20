@@ -1,0 +1,1 @@
+ALTER TABLE "set" ALTER COLUMN "setNumber" SET DEFAULT '0'::int;

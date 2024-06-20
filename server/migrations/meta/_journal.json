@@ -15,6 +15,34 @@
       "when": 1718673858633,
       "tag": "0001_crazy_thanos",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1718843652902,
+      "tag": "0002_tiny_vargas",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1718844100930,
+      "tag": "0003_common_viper",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1718845631650,
+      "tag": "0004_misty_morlun",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1718845876502,
+      "tag": "0005_wakeful_vampiro",
+      "breakpoints": true
     }
   ]
 }

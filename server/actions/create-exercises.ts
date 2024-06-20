@@ -6,13 +6,13 @@ import { eq } from "drizzle-orm";
 
 import { revalidatePath } from "next/cache";
 import { exerciseSchema } from "@/types/exercise-schema";
-import { exercises } from "../schema";
+import { exercises, sets } from "../schema";
 
 const action = createSafeActionClient();
 
 export const createExercise = action(
   exerciseSchema,
-  async ({ id, name, dayId, workoutId }) => {
+  async ({ id, name, dayId, workoutId, numSet, weight, reps }) => {
     try {
       // if wanted to test the error handling, we can throw an error
       // throw new Error("Not implemented");
@@ -40,6 +40,18 @@ export const createExercise = action(
         })
         // we need to use returning() to get the new exercie
         .returning();
+
+      for (let i = 0; i < +numSet; i++) {
+        await db
+          .insert(sets)
+          .values({
+            setNumber: String(i + 1),
+            weight,
+            reps,
+            exerciseId: newExercise[0].id,
+          })
+          .returning();
+      }
       revalidatePath(`/dashboard/day/${workoutId}/exercise/${dayId}`);
 
       return { success: `${newExercise[0].name} created` };

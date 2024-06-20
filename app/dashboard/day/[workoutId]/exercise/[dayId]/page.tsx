@@ -25,7 +25,7 @@ const DayPage = async ({ params }: Params) => {
         orderBy: (exercises, { asc }) => [asc(exercises.created)],
         with: {
           sets: {
-            orderBy: (sets, { asc }) => [asc(sets.setNumber)],
+            orderBy: (sets, { asc }) => [asc(sets.created)],
           },
         },
       },

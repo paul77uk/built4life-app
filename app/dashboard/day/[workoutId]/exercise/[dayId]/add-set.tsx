@@ -54,7 +54,7 @@ const AddSet = ({ exercise }: AddSetProps) => {
     },
     onSettled: () => {
       toast.dismiss();
-      form.reset();
+      // form.reset();
     },
   });
 

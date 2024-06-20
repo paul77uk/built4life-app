@@ -2,14 +2,14 @@ import { auth } from "@/server/auth";
 import { UserButton } from "./user-button";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { LogIn } from "lucide-react";
+import { LogIn, Menu } from "lucide-react";
 
 const Nav = async () => {
   const session = await auth();
 
   return (
     <main className="mb-[80px] ">
-      <nav className="fixed w-full top-0 start-0 border-b border-gray-200 dark:border-gray-600 bg-secondary z-50">
+      <nav className="fixed w-full top-0 start-0 border-b border-gray-200 dark:border-gray-600 z-50 dark:bg-black">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link
             href="/"
@@ -21,7 +21,10 @@ const Nav = async () => {
           </Link>
           {!session ? (
             <Button asChild>
-              <Link className="flex gap-2" href="/auth/login"><LogIn size={16} />Login</Link>
+              <Link className="flex gap-2" href="/auth/login">
+                <LogIn size={16} />
+                Login
+              </Link>
             </Button>
           ) : (
             <UserButton user={session?.user} expires={session?.expires} />

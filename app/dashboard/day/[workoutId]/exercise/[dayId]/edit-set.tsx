@@ -62,7 +62,6 @@ const EditSet = ({ set }: SetProps) => {
     },
     onSettled: () => {
       toast.dismiss();
-      form.reset();
     },
   });
 

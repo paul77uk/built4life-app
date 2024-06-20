@@ -97,6 +97,48 @@ const CreateExercise = () => {
                       )}
                     />
 
+                    <FormField
+                      control={form.control}
+                      name="numSet"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Number of Sets</FormLabel>
+                          <FormControl>
+                            <Input placeholder="number of sets" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="weight"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Weight</FormLabel>
+                          <FormControl>
+                            <Input placeholder="weight" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="reps"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Reps</FormLabel>
+                          <FormControl>
+                            <Input placeholder="reps" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
                     <DialogClose>
                       <Button
                         // isDirty is a hook that returns true if the form has been modified

@@ -42,6 +42,7 @@ export const createSet = action(
             setNumber,
             weight,
             reps,
+            exerciseId
           })
           // checking if the set id is equal to the id passed in
           .where(eq(sets.id, id))
