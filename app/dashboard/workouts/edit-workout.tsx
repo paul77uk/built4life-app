@@ -85,7 +85,7 @@ const EditWorkout = ({ workout }: Workout) => {
           <Pencil size={16} />
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-[425px] ">
+      <DialogContent >
         <Card className="border-0">
           <CardHeader>
             <CardTitle>Edit Workout</CardTitle>

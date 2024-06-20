@@ -69,7 +69,7 @@ const CreateForm = () => {
       <DialogTrigger asChild>
         <Button>Add Workout</Button>
       </DialogTrigger>
-      <DialogContent className="max-w-[425px] ">
+      <DialogContent >
         <Card className="border-0">
           <CardHeader>
             <CardTitle>Create Workout</CardTitle>

@@ -78,7 +78,7 @@ const EditSet = ({ set }: SetProps) => {
             <Pencil size={16} />
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-[425px] ">
+        <DialogContent >
           <Card className="border-0">
             <CardHeader>
               <CardTitle>Edit Set</CardTitle>

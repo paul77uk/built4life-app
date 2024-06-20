@@ -69,7 +69,7 @@ const AddSet = ({ exercise }: AddSetProps) => {
         <DialogTrigger asChild>
           <Plus size={20} />
         </DialogTrigger>
-        <DialogContent className="max-w-[425px] ">
+        <DialogContent >
           <Card className="border-0">
             <CardHeader>
               <CardTitle>Add Set</CardTitle>

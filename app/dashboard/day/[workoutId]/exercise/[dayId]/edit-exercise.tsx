@@ -75,7 +75,7 @@ const EditExercise = ({ exercise }: EditExerciseProps) => {
           <DialogTrigger asChild>
             <Pencil size={16} />
           </DialogTrigger>
-          <DialogContent className="max-w-[425px] ">
+          <DialogContent >
             <Card className="border-0">
               <CardHeader>
                 <CardTitle>Edit Exercise</CardTitle>

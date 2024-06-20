@@ -71,7 +71,7 @@ const CreateExercise = () => {
               <Plus className="ml-2" />
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-[425px] ">
+          <DialogContent >
             <Card className="border-0">
               <CardHeader>
                 <CardTitle>Create Exercise</CardTitle>
