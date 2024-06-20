@@ -41,7 +41,7 @@ export const createExercise = action(
         // we need to use returning() to get the new exercie
         .returning();
 
-      for (let i = 0; i < +numSet; i++) {
+      for (let i = 0; i < +numSet!; i++) {
         await db
           .insert(sets)
           .values({
