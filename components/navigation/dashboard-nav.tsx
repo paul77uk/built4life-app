@@ -16,6 +16,7 @@ export default function DashboardNav({
       <ul className="flex flex-wrap justify-center text-xs uppercase font-semibold">
         {links.map((link) => (
           <Link
+            key={link.path}
             className={cn(
               "flex gap-2 items-center relative p-3 text-white",
               pathname === link.path && "bg-primary"
