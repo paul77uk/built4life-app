@@ -35,7 +35,7 @@ const DayPage = async ({ params }: Params) => {
 
   return (
     <main>
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-center mt-[90px] sm:mt-0">
         {/* <MobileMenu workoutId={params.workoutId} /> */}
         <CreateExercise />
       </div>

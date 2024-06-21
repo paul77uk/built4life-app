@@ -13,8 +13,8 @@ const Nav = async () => {
   const session = await auth();
 
   return (
-    <main className="mb-[75px] ">
-      <nav className="fixed w-full top-0 start-0 z-50 dark:bg-black">
+    <main className="mb-[70px] w-full">
+      <nav className="fixed top-0 start-0 end-0 z-50 dark:bg-black">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           {/* <MobileMenu /> */}
           <Link
