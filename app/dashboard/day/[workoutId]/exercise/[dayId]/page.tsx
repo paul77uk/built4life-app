@@ -9,6 +9,7 @@ import { Pencil, Plus, Trash, Trash2 } from "lucide-react";
 import AddSet from "./add-set";
 import EditExercise from "./edit-exercise";
 import DeleteExercise from "./delete-exercise";
+import MobileMenu from "@/components/navigation/mobile-menu";
 
 type Params = {
   params: {
@@ -34,7 +35,10 @@ const DayPage = async ({ params }: Params) => {
 
   return (
     <main>
-      <CreateExercise />
+      <div className="flex gap-2 items-center">
+        {/* <MobileMenu workoutId={params.workoutId} /> */}
+        <CreateExercise />
+      </div>
       {day ? (
         <div className="mt-3.5">
           {day.exercises.map((exercise) => (

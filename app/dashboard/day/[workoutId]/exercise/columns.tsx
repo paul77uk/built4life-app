@@ -42,8 +42,6 @@ type Set = {
   exerciseId: string;
 };
 
-// TODO: change to are you sure you want to delete this set alert when click on delete, like n the workout page
-
 const ActionCell = ({ row }: { row: Row<Set> }) => {
   const set = row.original;
 

@@ -12,6 +12,7 @@ import { weeks } from "@/server/schema";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import DayBtn from "./day-btn";
+import MobileMenu from "@/components/navigation/mobile-menu";
 
 type Params = {
   workoutId: string;
@@ -33,6 +34,7 @@ export default async function DayLayout({
   });
   return (
     <main className="flex gap-5">
+      {/* max-[375px]:hidden */}
       <div className="flex flex-col gap-3">
         <Accordion
           defaultValue={weeksData[0].id}

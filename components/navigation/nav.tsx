@@ -3,20 +3,31 @@ import { UserButton } from "./user-button";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { LogIn, Menu } from "lucide-react";
+import MobileMenu from "./mobile-menu";
+import { Rubik_Dirt } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const font = Rubik_Dirt({ weight: "400", preload: false });
 
 const Nav = async () => {
   const session = await auth();
 
   return (
-    <main className="mb-[80px] ">
-      <nav className="fixed w-full top-0 start-0 border-b border-gray-200 dark:border-gray-600 z-50 dark:bg-black">
+    <main className="mb-[75px] ">
+      <nav className="fixed w-full top-0 start-0 z-50 dark:bg-black">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+          {/* <MobileMenu /> */}
           <Link
             href="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              Built<span className="text-primary">4</span>Life
+            <span
+              className={cn(
+                font.className,
+                "self-center text-2xl sm:text-3xl lg:text-4xl whitespace-nowrap dark:text-white"
+              )}
+            >
+              BUILT<span className="text-primary">4</span>LIFE
             </span>
           </Link>
           {!session ? (

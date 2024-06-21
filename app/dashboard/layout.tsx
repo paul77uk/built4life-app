@@ -43,9 +43,11 @@ export default async function DashboardLayout({
   ];
 
   return (
-    <div className="mx-auto max-[320px]:w-[250px] min-[321px]:w-5/6 sm:w-[600px]">
+    <main>
       <DashboardNav links={links} />
-      {children}
-    </div>
+      <div className="mx-auto max-[320px]:w-[250px] min-[321px]:w-5/6 sm:w-[600px]">
+        {children}
+      </div>
+    </main>
   );
 }
