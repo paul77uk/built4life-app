@@ -12,7 +12,7 @@ export default function DashboardNav({
 }) {
   const pathname = usePathname();
   return (
-    <nav className="mb-[700px] fixed top-18 start-0 end-0 z-50 bg-[#333333] w-full">
+    <nav className="fixed top-18 start-0 end-0 z-50 bg-[#333333] w-full">
       <ul className="flex flex-wrap w-full justify-center text-xs uppercase font-semibold">
         {links.map((link) => (
           <Link

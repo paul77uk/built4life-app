@@ -38,7 +38,7 @@ const Page = async () => {
   // if (!workouts) throw new Error("No workouts found");
 
   return (
-    <>
+    <main >
       <CreateForm />
       {workoutData.map((workout) => (
         <div key={workout.id}>
@@ -60,7 +60,7 @@ const Page = async () => {
           </Card>
         </div>
       ))}
-    </>
+    </main>
   );
 };
 export default Page;

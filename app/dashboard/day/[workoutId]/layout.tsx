@@ -35,7 +35,7 @@ export default async function DayLayout({
   return (
     <main className="flex gap-5 overflow-auto">
       {/* max-[375px]:hidden */}
-      <div className="flex flex-col gap-3 mt-[90px]  sm:mt-[55px]">
+      <div className="flex flex-col gap-3">
         <Accordion
           defaultValue={weeksData[0].id}
           type="single"
