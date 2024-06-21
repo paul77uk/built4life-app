@@ -38,11 +38,14 @@ const Page = async () => {
   // if (!workouts) throw new Error("No workouts found");
 
   return (
-    <main >
+    <main>
       <CreateForm />
       {workoutData.map((workout) => (
         <div key={workout.id}>
-          <Card className="mt-3" key={workout.id}>
+          <Card
+            className="mt-3 bg-transparent border-[#333333] border-2"
+            key={workout.id}
+          >
             <CardHeader>
               <CardTitle className="text-md flex justify-between items-center">
                 {/* links to first day of first week of workout by default */}

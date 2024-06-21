@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/navigation/nav";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import Toast from "@/components/ui/toast";
 import QueryProvider from "@/components/providers/query-provider";
+import { cn } from "@/lib/utils";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({ weight: "400", preload: false});
 
 export const metadata: Metadata = {
   title: "Built 4 Life",
@@ -20,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={cn(roboto.className, "bg-[#1E1E1E]")}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <Nav />
           <Toast />

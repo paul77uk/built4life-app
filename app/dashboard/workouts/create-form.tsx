@@ -65,71 +65,73 @@ const CreateForm = () => {
   };
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button>Add Workout</Button>
-      </DialogTrigger>
-      <DialogContent >
-        <Card className="border-0">
-          <CardHeader>
-            <CardTitle>Create Workout</CardTitle>
-            {/* <CardDescription>Card Description</CardDescription> */}
-          </CardHeader>
-          <CardContent>
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-4"
-              >
-                <FormField
-                  control={form.control}
-                  name="title"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Workout Title</FormLabel>
-                      <FormControl>
-                        <Input placeholder="workout title" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="totalWeeks"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Number of weeks</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="number of weeks"
-                          {...field}
-                          type="number"
-                          min={0}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <DialogClose asChild>
-                  <Button
-                    // isDirty is a hook that returns true if the form has been modified
-                    disabled={
-                      status === "executing" || !form.formState.isValid
-                      // || !form.formState.isDirty
-                    }
-                    type="submit"
-                  >
-                    Submit
-                  </Button>
-                </DialogClose>
-              </form>
-            </Form>
-          </CardContent>
-        </Card>
-      </DialogContent>
-    </Dialog>
+    <main>
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button>Add Workout</Button>
+        </DialogTrigger>
+        <DialogContent >
+          <Card className="border-0">
+            <CardHeader>
+              <CardTitle>Create Workout</CardTitle>
+              {/* <CardDescription>Card Description</CardDescription> */}
+            </CardHeader>
+            <CardContent>
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-4"
+                >
+                  <FormField
+                    control={form.control}
+                    name="title"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Workout Title</FormLabel>
+                        <FormControl>
+                          <Input placeholder="workout title" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="totalWeeks"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Number of weeks</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="number of weeks"
+                            {...field}
+                            type="number"
+                            min={0}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <DialogClose asChild>
+                    <Button
+                      // isDirty is a hook that returns true if the form has been modified
+                      disabled={
+                        status === "executing" || !form.formState.isValid
+                        // || !form.formState.isDirty
+                      }
+                      type="submit"
+                    >
+                      Submit
+                    </Button>
+                  </DialogClose>
+                </form>
+              </Form>
+            </CardContent>
+          </Card>
+        </DialogContent>
+      </Dialog>
+    </main>
   );
 };
 export default CreateForm;

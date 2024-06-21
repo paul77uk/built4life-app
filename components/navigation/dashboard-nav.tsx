@@ -18,8 +18,8 @@ export default function DashboardNav({
           <Link
             key={link.path}
             className={cn(
-              "flex gap-2 items-center relative p-3 text-white",
-              pathname === link.path && "bg-primary"
+              "flex gap-2 items-center relative p-3 text-white hover:text-primary",
+              pathname === link.path && "bg-primary hover:text-white"
             )}
             href={link.path}
           >
