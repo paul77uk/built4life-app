@@ -40,7 +40,7 @@ const DeleteExercise = ({ exercise }: ExerciseProps) => {
   });
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
+      <AlertDialogTrigger asChild className="cursor-pointer">
         <Trash2 size={16} />
       </AlertDialogTrigger>
       <AlertDialogContent>

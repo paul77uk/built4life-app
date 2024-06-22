@@ -45,7 +45,7 @@ export default async function DashboardLayout({
   return (
     <main>
       <DashboardNav links={links} />
-      <div className="w-full mx-auto max-[320px]:w-[250px] min-[321px]:w-5/6 sm:w-[600px] pt-[100px] sm:pt-[50px]">
+      <div className="w-full mx-auto max-[320px]:w-[250px] min-[321px]:w-5/6 sm:w-[600px] min-[506px]:pt-[50px] max-[505px]:pt-[100px]">
         {children}
       </div>
     </main>

@@ -68,7 +68,7 @@ export default async function DayLayout({
           ))}
         </Accordion>
       </div>
-      <div>{children}</div>
+      <div className="w-full">{children}</div>
     </main>
   );
 }

@@ -66,7 +66,7 @@ const AddSet = ({ exercise }: AddSetProps) => {
   return (
     <main>
       <Dialog>
-        <DialogTrigger asChild>
+        <DialogTrigger asChild className="cursor-pointer"> 
           <Plus size={20} />
         </DialogTrigger>
         <DialogContent >

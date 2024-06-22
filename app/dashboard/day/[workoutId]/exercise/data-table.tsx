@@ -1,5 +1,10 @@
 "use client";
 
+type Exercise = {
+  id: string;
+  name: string | null;
+};
+
 import {
   ColumnDef,
   flexRender,
@@ -15,15 +20,20 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import AddSet from "./[dayId]/add-set";
+import EditExercise from "./[dayId]/edit-exercise";
+import DeleteExercise from "./[dayId]/delete-exercise";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  exercise: Exercise;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  exercise,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -34,13 +44,20 @@ export function DataTable<TData, TValue>({
   return (
     <div className="rounded-md border">
       <Table>
-        {/* <TableHeader>
+        <TableHeader>
           <TableRow>
-            <TableCell colSpan={columns.length} className=" text-center">
-              Squat
+            <TableCell colSpan={4} className="bg-primary rounded">
+              <div className="flex w-full justify-between">
+                <div>{exercise.name}</div>
+                <div className="flex gap-2 items-center">
+                  <AddSet exercise={exercise} />
+                  <EditExercise exercise={exercise} />
+                  <DeleteExercise exercise={exercise} />
+                </div>
+              </div>
             </TableCell>
           </TableRow>
-        </TableHeader> */}
+        </TableHeader>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>

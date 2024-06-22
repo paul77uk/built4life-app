@@ -72,10 +72,10 @@ const EditExercise = ({ exercise }: EditExerciseProps) => {
     <>
       {dayId && (
         <Dialog>
-          <DialogTrigger asChild>
+          <DialogTrigger asChild className="cursor-pointer">
             <Pencil size={16} />
           </DialogTrigger>
-          <DialogContent >
+          <DialogContent>
             <Card className="border-0">
               <CardHeader>
                 <CardTitle>Edit Exercise</CardTitle>

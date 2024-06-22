@@ -43,15 +43,11 @@ const DayPage = async ({ params }: Params) => {
         <div className="mt-3.5">
           {day.exercises.map((exercise) => (
             <div className="mb-4" key={exercise.id}>
-              <Button className="flex justify-between w-full  border-secondary-foreground border-t border-x rounded-b-none">
-                {exercise.name}
-                <div className="flex gap-2 items-center">
-                  <AddSet exercise={exercise} />
-                  <EditExercise exercise={exercise} />
-                  <DeleteExercise exercise={exercise} />
-                </div>
-              </Button>
-              <DataTable columns={columns} data={exercise.sets} />
+              <DataTable
+                columns={columns}
+                data={exercise.sets}
+                exercise={exercise}
+              />
             </div>
           ))}
         </div>

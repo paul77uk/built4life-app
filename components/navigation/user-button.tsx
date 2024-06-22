@@ -17,6 +17,8 @@ import { LogOut, Moon, Settings, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Switch } from "../ui/switch";
 import { useRouter } from "next/navigation";
+import { GoPersonFill } from "react-icons/go";
+import { IoPerson } from "react-icons/io5";
 
 export const UserButton = ({ user }: Session) => {
   const { setTheme, theme } = useTheme();
@@ -29,18 +31,8 @@ export const UserButton = ({ user }: Session) => {
     return (
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger>
-          <Avatar>
-            {user.image && <Image src={user.image} alt={user.name!} fill />}
-            {!user.image && (
-              <AvatarFallback className="bg-primary text-white">
-                <div className="font-bold">
-                  {user.name
-                    ? user.name.charAt(0).toUpperCase()
-                    : user.email?.charAt(0).toUpperCase()}
-                </div>
-              </AvatarFallback>
-            )}
-          </Avatar>
+          <IoPerson size={22} />
+          {/* <GoPersonFill size={22} /> */}
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-64 p-6" align="end">
           <div className="mb-4 p-4 flex flex-col gap-1 rounded-lg items-center bg-primary ">
