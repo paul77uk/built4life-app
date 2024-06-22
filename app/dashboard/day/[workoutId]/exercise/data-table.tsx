@@ -46,7 +46,7 @@ export function DataTable<TData, TValue>({
       <Table>
         <TableHeader>
           <TableRow>
-            <TableCell colSpan={4} className="bg-primary rounded">
+            <TableCell colSpan={4} className="bg-primary rounded-t-md">
               <div className="flex w-full justify-between">
                 <div>{exercise.name}</div>
                 <div className="flex gap-2 items-center">

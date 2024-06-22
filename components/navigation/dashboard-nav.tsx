@@ -12,13 +12,13 @@ export default function DashboardNav({
 }) {
   const pathname = usePathname();
   return (
-    <nav className="fixed top-18 start-0 end-0 z-50 bg-[#333333] w-full">
+    <nav className=" bg-[#333333] w-full mb-3">
       <ul className="flex flex-wrap w-full justify-center text-xs uppercase font-semibold">
         {links.map((link) => (
           <Link
             key={link.path}
             className={cn(
-              "flex gap-2 items-center relative p-3 text-white hover:text-primary",
+              "flex gap-2 items-center p-3 text-white hover:text-primary",
               pathname === link.path && "bg-primary hover:text-white"
             )}
             href={link.path}
