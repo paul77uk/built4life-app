@@ -3,6 +3,7 @@
 import { db } from "..";
 import { eq } from "drizzle-orm";
 import { weeks } from "../schema";
+import { revalidatePath } from "next/cache";
 
 export const getWeeksByWorkoutId = async ({
   workoutId,
@@ -17,6 +18,8 @@ export const getWeeksByWorkoutId = async ({
   });
 
   if (!weeksData) throw new Error("No exercises found");
+
+  revalidatePath('/dashboard/programs/');
 
   return weeksData;
 };

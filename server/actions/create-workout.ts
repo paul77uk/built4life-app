@@ -1,6 +1,6 @@
 "use server";
 
-import { workoutSchema } from "@/types/workout-schema";
+import { workoutSchema, zWorkoutSchema } from "@/types/workout-schema";
 import { createSafeActionClient } from "next-safe-action";
 import { db } from "..";
 import { eq } from "drizzle-orm";
@@ -10,15 +10,9 @@ import { revalidatePath } from "next/cache";
 
 const action = createSafeActionClient();
 
-type Workout = {
-  title: string;
-  totalWeeks?: number;
-  id?: string;
-};
-
 export const createWorkout = action(
   workoutSchema,
-  async ({ title, totalWeeks, id }: Workout) => {
+  async ({ title, totalWeeks, id }: zWorkoutSchema) => {
     const session = await auth();
     const user = session?.user; // get the user from the session
     try {
@@ -36,6 +30,8 @@ export const createWorkout = action(
           .returning();
         // we call existingWorkout[0] to get the first item in the array, as update(workouts) returns an array
         revalidatePath("/dashboard/workouts");
+        revalidatePath("/dashboard/programs");
+        revalidatePath("/programs");
         return { success: `${existingWorkout[0].title} updated` };
       }
       // create the workout
@@ -48,6 +44,8 @@ export const createWorkout = action(
         // we need to use returning() to get the new workout
         .returning();
       revalidatePath("/dashboard/workouts");
+      revalidatePath("/dashboard/programs");
+      revalidatePath("/programs");
 
       // creates the number of weeks inputed
       for (let i = 0; i < totalWeeks!; i++) {
@@ -69,6 +67,7 @@ export const createWorkout = action(
       }
 
       revalidatePath("/dashboard/workouts");
+      revalidatePath("/programs");
       return { success: `${newWorkout[0].title} created` };
     } catch (error) {
       return { error: "Failed to create workout" };

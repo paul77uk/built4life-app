@@ -1,7 +1,4 @@
-import { redirect } from "next/navigation";
-
-const Home = () => redirect("/dashboard/workouts");
+const Home = () => <div></div>;
 export default Home;
-
 
 // TODO: will add landing page or keep the redirect

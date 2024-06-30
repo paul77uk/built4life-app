@@ -29,6 +29,7 @@ export const deleteExercise = action(
         },
       });
       revalidatePath(`/dashboard/day/${day?.id}/exercise/${id}`);
+      revalidatePath("/dashboard/programs");
       return { success: `${data[0].name} deleted` };
     } catch (error) {
       return { error: "Failed to delete Exercise" };

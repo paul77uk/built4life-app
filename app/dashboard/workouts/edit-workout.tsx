@@ -71,7 +71,7 @@ const EditWorkout = ({ workout }: Workout) => {
     },
     onSettled: () => {
       toast.dismiss();
-    }
+    },
   });
 
   const onSubmit = (values: z.infer<typeof workoutSchema>) => {
@@ -81,11 +81,9 @@ const EditWorkout = ({ workout }: Workout) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="w-8 h-8 p-0">
-          <Pencil size={16} />
-        </Button>
+        <Pencil size={16} className="cursor-pointer"/>
       </DialogTrigger>
-      <DialogContent >
+      <DialogContent>
         <Card className="border-0">
           <CardHeader>
             <CardTitle>Edit Workout</CardTitle>

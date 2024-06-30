@@ -1,4 +1,4 @@
 import { redirect } from "next/navigation"
 
-const DashboardPage = () => redirect("/dashboard/workouts")
+const DashboardPage = () => <div></div>
 export default DashboardPage

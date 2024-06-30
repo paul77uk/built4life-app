@@ -1,4 +1,4 @@
-import { relations } from "drizzle-orm";
+import { InferSelectModel, relations } from "drizzle-orm";
 import {
   boolean,
   timestamp,
@@ -6,11 +6,9 @@ import {
   text,
   primaryKey,
   integer,
-  serial,
 } from "drizzle-orm/pg-core";
 
 import type { AdapterAccountType } from "next-auth/adapters";
-import { number, set } from "zod";
 
 // defaultFn: () => crypto.randomUUID() is a function that generates a random UUID for the id column
 // uuid's are used to uniquely identify a user, this is a common practice in databases, the id's are longer and harder to guess than a simple number, they use a combination of numbers and letters.
@@ -97,8 +95,9 @@ export const authenticators = pgTable(
 export const workouts = pgTable("workout", {
   id: text("id")
     .primaryKey()
-    .$defaultFn(() => crypto.randomUUID()),
-  title: text("title"),
+    .$defaultFn(() => crypto.randomUUID())
+    .notNull(),
+  title: text("title").notNull(),
   userId: text("userId")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
@@ -114,7 +113,8 @@ export const workoutsRelations = relations(workouts, ({ many }) => ({
 export const weeks = pgTable("week", {
   id: text("id")
     .primaryKey()
-    .$defaultFn(() => crypto.randomUUID()),
+    .$defaultFn(() => crypto.randomUUID())
+    .notNull(),
   number: text("number"),
   workoutId: text("workoutId")
     .notNull()
@@ -133,7 +133,8 @@ export const weeksRelations = relations(weeks, ({ one, many }) => ({
 export const days = pgTable("day", {
   id: text("id")
     .primaryKey()
-    .$defaultFn(() => crypto.randomUUID()),
+    .$defaultFn(() => crypto.randomUUID())
+    .notNull(),
   number: text("number"),
   weekId: text("weekId")
     .notNull()
@@ -152,7 +153,8 @@ export const daysRelations = relations(days, ({ one, many }) => ({
 export const exercises = pgTable("exercise", {
   id: text("id")
     .primaryKey()
-    .$defaultFn(() => crypto.randomUUID()),
+    .$defaultFn(() => crypto.randomUUID())
+    .notNull(),
   name: text("name"),
   dayId: text("dayId")
     .notNull()

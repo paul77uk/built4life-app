@@ -1,1 +1,0 @@
-ALTER TABLE "set" ALTER COLUMN "setNumber" SET DATA TYPE text;

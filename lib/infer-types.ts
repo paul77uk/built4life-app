@@ -1,3 +1,4 @@
+import { exercises } from "./../server/schema";
 import type {
   BuildQueryResult,
   DBQueryConfig,
@@ -25,3 +26,19 @@ export type InferResultType<
     with: With;
   }
 >;
+
+export type Workouts = InferResultType<
+  "workouts",
+  { weeks: true; days: true; exercises: true; sets: true }
+>;
+
+export type Weeks = InferResultType<
+  "weeks",
+  { days: true; exercises: true; sets: true }
+>;
+
+export type Days = InferResultType<"days", { exercises: true; sets: true }>;
+
+export type Exercises = InferResultType<"exercises", { sets: true }>;
+
+export type Sets = InferResultType<"sets">;

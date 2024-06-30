@@ -6,18 +6,15 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback } from "../ui/avatar";
 import Image from "next/image";
 import { IoBarbellOutline } from "react-icons/io5";
 import { LogOut, Moon, Settings, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Switch } from "../ui/switch";
 import { useRouter } from "next/navigation";
-import { GoPersonFill } from "react-icons/go";
 import { IoPerson } from "react-icons/io5";
 
 export const UserButton = ({ user }: Session) => {
@@ -31,7 +28,7 @@ export const UserButton = ({ user }: Session) => {
     return (
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger>
-          <IoPerson size={22} />
+          <IoPerson size={22} className="mt-2" />
           {/* <GoPersonFill size={22} /> */}
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-64 p-6" align="end">

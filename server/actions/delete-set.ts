@@ -26,6 +26,7 @@ export const deleteSet = action(
       revalidatePath(
         `/dashboard/day/${day?.id}/exercise/${data[0].exerciseId}`
       );
+       revalidatePath("/dashboard/programs");
       return { success: `Set ${data[0].setNumber} deleted` };
     } catch (error) {
       return { error: "Failed to delete set" };

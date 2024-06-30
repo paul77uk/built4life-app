@@ -49,9 +49,9 @@ CREATE TABLE IF NOT EXISTS "session" (
 CREATE TABLE IF NOT EXISTS "set" (
 	"id" text PRIMARY KEY NOT NULL,
 	"exerciseId" text NOT NULL,
-	"setNumber" integer NOT NULL,
-	"weight" integer NOT NULL,
-	"reps" integer NOT NULL,
+	"setNumber" text,
+	"weight" text,
+	"reps" text,
 	"created" timestamp DEFAULT now()
 );
 --> statement-breakpoint
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS "week" (
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "workout" (
 	"id" text PRIMARY KEY NOT NULL,
-	"title" text,
+	"title" text NOT NULL,
 	"userId" text NOT NULL,
 	"created" timestamp DEFAULT now()
 );

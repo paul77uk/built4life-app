@@ -51,6 +51,7 @@ export const createSet = action(
         revalidatePath(
           `/dashboard/day/${day?.id}/exercise/${existingSet[0].exerciseId}`
         );
+         revalidatePath("/dashboard/programs");
         return { success: `Set ${existingSet[0].setNumber} updated` };
       }
       // create the exercise
@@ -68,6 +69,7 @@ export const createSet = action(
       revalidatePath(
         `/dashboard/day/${day?.id}/exercise/${newSet[0].exerciseId}`
       );
+       revalidatePath("/dashboard/programs");
 
       return { success: `Set ${newSet[0].setNumber} created` };
     } catch (error) {

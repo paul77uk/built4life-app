@@ -3,6 +3,7 @@
 import { db } from "..";
 import { eq } from "drizzle-orm";
 import { exercises } from "../schema";
+import { revalidatePath } from "next/cache";
 
 export const getExerciseByDayId = async ({ dayId }: { dayId: string }) => {
   const exerciseData = await db.query.exercises.findMany({
@@ -14,5 +15,6 @@ export const getExerciseByDayId = async ({ dayId }: { dayId: string }) => {
 
   if (!exerciseData) throw new Error("No exercises found");
 
+   revalidatePath("/dashboard/programs");
   return exerciseData;
 };

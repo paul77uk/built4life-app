@@ -6,7 +6,7 @@ import {
   Settings,
 } from "lucide-react";
 
-import DashboardNav from "@/components/navigation/dashboard-nav";
+
 
 export default async function DashboardLayout({
   children,
@@ -15,8 +15,8 @@ export default async function DashboardLayout({
 }) {
   const links = [
     {
-      label: "Workouts",
-      path: "/dashboard/workouts",
+      label: "Programs",
+      path: "/dashboard/programs",
       icon: <Dumbbell size={16} />,
     },
     {
@@ -44,10 +44,8 @@ export default async function DashboardLayout({
 
   return (
     <main>
-      <DashboardNav links={links} />
-      <div className="w-full mx-auto max-[320px]:w-[250px] min-[321px]:w-5/6 sm:w-[600px]">
-        {children}
-      </div>
+      {/* <DashboardNav links={links} /> */}
+      <div className="">{children}</div>
     </main>
   );
 }

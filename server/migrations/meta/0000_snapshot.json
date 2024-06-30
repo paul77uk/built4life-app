@@ -1,5 +1,5 @@
 {
-  "id": "6f53569f-944c-4cb4-a7d5-543aaf053d27",
+  "id": "68b3cd3b-e4fc-4472-b576-6f1fa48f1dc9",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -348,21 +348,21 @@
         },
         "setNumber": {
           "name": "setNumber",
-          "type": "integer",
+          "type": "text",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "weight": {
           "name": "weight",
-          "type": "integer",
+          "type": "text",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "reps": {
           "name": "reps",
-          "type": "integer",
+          "type": "text",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "created": {
           "name": "created",
@@ -530,7 +530,7 @@
           "name": "title",
           "type": "text",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "userId": {
           "name": "userId",

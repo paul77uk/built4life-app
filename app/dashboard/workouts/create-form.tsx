@@ -37,11 +37,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 
 const CreateForm = () => {
   const form = useForm<z.infer<typeof workoutSchema>>({
     resolver: zodResolver(workoutSchema),
-   
   });
 
   const { execute, status } = useAction(createWorkout, {
@@ -68,9 +68,11 @@ const CreateForm = () => {
     <main>
       <Dialog>
         <DialogTrigger asChild>
-          <Button>Add Workout</Button>
+          <Button className="flex items-center uppercase text-xs gap-1 font-bold">
+            <div>Program</div> <Plus size={18} />
+          </Button>
         </DialogTrigger>
-        <DialogContent >
+        <DialogContent>
           <Card className="border-0">
             <CardHeader>
               <CardTitle>Create Workout</CardTitle>

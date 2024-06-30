@@ -7,7 +7,8 @@ const config = withUt({
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx,html}",
+    "./node_modules/@rewind-ui/core/dist/theme/styles/*.js",
   ],
   prefix: "",
   theme: {
@@ -75,7 +76,14 @@ const config = withUt({
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+    require("tailwind-scrollbar")({ nocompatible: true }),
+    require("@tailwindcss/forms")({
+      strategy: "class", // only generate classes
+    }),
+  ],
 }) satisfies Config;
 
 export default config;

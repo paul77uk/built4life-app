@@ -6,3 +6,6 @@ export const workoutSchema = z.object({
   totalWeeks: z.coerce.number().positive().optional(),
   // userId: z.string()
 });
+
+
+export type zWorkoutSchema = z.infer<typeof workoutSchema>;

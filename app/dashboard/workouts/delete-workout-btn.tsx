@@ -41,9 +41,7 @@ const DeleteWorkoutBtn = ({ workout }: WorkoutProps) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button className="w-8 h-8 p-0">
-          <Trash2 size={16} />
-        </Button>
+        <Trash2 size={16} className="cursor-pointer" />
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>

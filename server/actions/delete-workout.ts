@@ -15,6 +15,7 @@ export const deleteWorkout = action(
     try {
       const data = await db.delete(workouts).where(eq(workouts.id, id)).returning();
       revalidatePath("/dashboard/workouts");
+       revalidatePath("/dashboard/programs");
       return { success: `Workout ${data[0].title} deleted` };
     } catch (error) {
       return { error: "Failed to delete workout" };
