@@ -26,7 +26,7 @@ const DaysPage = () => {
       defaultValue={data[0].id}
     >
       {data.map((day) => (
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2" key={day.id}>
           <RadioGroupItem value={day.id} id={day.id} />
           <Label htmlFor={day.id}>{day.number}</Label>
         </div>
