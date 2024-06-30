@@ -66,7 +66,7 @@ const ProgramSelection = ({ workoutData }: Workout) => {
       }}
     >
       {workoutData.map((workout) => (
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2" key={workout.id}>
           <RadioGroupItem value={workout.id} id={workout.id} />
           <Label htmlFor={workout.id} className="flex justify-between w-full">
             {workout.title}{" "}
