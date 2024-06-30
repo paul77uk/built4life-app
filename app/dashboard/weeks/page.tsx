@@ -39,7 +39,7 @@ const WeeksPage = () => {
       }}
     >
       {data.map((week: any) => (
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2" key={week.id}>
           <RadioGroupItem value={week.id} id={week.id} />
           <Label htmlFor={week.id}>{week.number}</Label>
         </div>

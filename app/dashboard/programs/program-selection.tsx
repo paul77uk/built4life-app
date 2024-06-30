@@ -37,7 +37,7 @@ const ProgramSelection = ({ workoutData }: Workout) => {
     setWorkoutId(workoutData[0].id);
     setWeekId(workoutData[0].weeks[0].id);
     setDayId(workoutData[0].weeks[0].days[0].id);
-  }, []);
+  }, [setWorkoutId, setWeekId, setDayId]);
 
   // const queryClient = useQueryClient();
 

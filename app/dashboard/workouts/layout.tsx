@@ -91,7 +91,7 @@ const WorkoutLayout = async ({
 
                       <AccordionContent>
                         {week.days.map((day) => (
-                          <div className="pt-1">
+                          <div className="pt-1" key={day.id}>
                             <Link href={`/dashboard/workouts/${day.id}`}>
                               <Button>Day {day.number}</Button>
                             </Link>
