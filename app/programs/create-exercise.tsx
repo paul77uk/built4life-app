@@ -62,7 +62,7 @@ const CreateExercise = ({ dayId }: Partial<zExerciseSchema>) => {
     <>
       <Dialog>
         <DialogTrigger asChild>
-          <div className="flex gap-2 border w-fit text-primary border-primary rounded p-2 ms-5 mt-4 bg-black">
+          <div className="flex gap-2 border w-fit text-primary border-primary rounded p-2 ms-5  bg-black">
             Exercise
             <PlusSquare size={22} className="cursor-pointer" />
           </div>

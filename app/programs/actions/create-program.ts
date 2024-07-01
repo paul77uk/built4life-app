@@ -33,7 +33,7 @@ export const createProgram = action(
           .returning();
         // we call existingWorkout[0] to get the first item in the array, as update(workouts) returns an array
 
-        // revalidatePath("/programs");
+        revalidatePath("/programs");
         return { success: `${existingWorkout[0].title} updated` };
       }
       // create the workout

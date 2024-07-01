@@ -27,8 +27,9 @@ import { Button } from "@/components/ui/button";
 import { PenSquareIcon } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 import { createProgram } from "./actions/create-program";
+import { Workouts } from "@/lib/infer-types";
 
-const EditProgram = ({ id, title }: zWorkoutSchema) => {
+const EditProgram = ({ id, title } : Partial<Workouts>) => {
   const queryClient = useQueryClient();
   const form = useForm<z.infer<typeof workoutSchema>>({
     resolver: zodResolver(workoutSchema),
