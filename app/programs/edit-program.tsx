@@ -4,13 +4,7 @@ import { workoutSchema, zWorkoutSchema } from "@/types/workout-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import {
-  Card,
-  CardContent,
-
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -20,13 +14,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useAction } from "next-safe-action/hooks";
-import { createWorkout } from "@/server/actions/create-workout";
 import { toast } from "sonner";
 import {
   Dialog,
   DialogClose,
   DialogContent,
-
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -34,25 +26,22 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { PenSquareIcon } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
-
-
+import { createProgram } from "./actions/create-program";
 
 const EditProgram = ({ id, title }: zWorkoutSchema) => {
-    const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
   const form = useForm<z.infer<typeof workoutSchema>>({
     resolver: zodResolver(workoutSchema),
-    defaultValues: {
-      id,
-      title,
-    },
   });
 
-  const { execute, status } = useAction(createWorkout, {
+  form.setValue("id", id);
+
+  const { execute, status } = useAction(createProgram, {
     onSuccess(data) {
       if (data?.error) toast.error(data.error);
       if (data?.success) {
         toast.success(data.success);
-         queryClient.invalidateQueries({ queryKey: ["workouts"] });
+        queryClient.invalidateQueries({ queryKey: ["workouts"] });
       }
     },
     onExecute: (data) => {
@@ -87,6 +76,7 @@ const EditProgram = ({ id, title }: zWorkoutSchema) => {
                 <FormField
                   control={form.control}
                   name="title"
+                  defaultValue={title}
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Workout Title</FormLabel>

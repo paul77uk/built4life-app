@@ -1,10 +1,5 @@
 "use client";
 
-type Exercise = {
-  id: string;
-  name: string | null;
-};
-
 import {
   ColumnDef,
   flexRender,
@@ -21,14 +16,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import DeleteExercise from "../dashboard/day/[workoutId]/exercise/[dayId]/delete-exercise";
 import AddSet from "../dashboard/day/[workoutId]/exercise/[dayId]/add-set";
 import EditExercise from "../dashboard/day/[workoutId]/exercise/[dayId]/edit-exercise";
+import DeleteExercise from "./delete-exercise";
+import { Exercises } from "@/lib/infer-types";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  exercise: Exercise;
+  exercise: Exercises;
 }
 
 export function DataTable<TData, TValue>({
@@ -56,7 +52,7 @@ export function DataTable<TData, TValue>({
                 <div className="flex gap-2 items-center">
                   <AddSet exercise={exercise} />
                   <EditExercise exercise={exercise} />
-                  <DeleteExercise exercise={exercise} />
+                  <DeleteExercise id={exercise.id} />
                 </div>
               </div>
             </TableCell>

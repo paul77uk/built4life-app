@@ -2,11 +2,13 @@
 
 import { createSafeActionClient } from "next-safe-action";
 import { z } from "zod";
-import { db } from "..";
+
 
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { exercises } from "../schema";
+import { db } from "@/server";
+import { exercises } from "@/server/schema";
+
 
 const action = createSafeActionClient();
 
@@ -36,3 +38,5 @@ export const deleteExercise = action(
     }
   }
 );
+
+

@@ -3,18 +3,13 @@
 import { ColumnDef, Row } from "@tanstack/react-table";
 import EditSet from "../dashboard/day/[workoutId]/exercise/[dayId]/edit-set";
 import DeleteSet from "../dashboard/day/[workoutId]/exercise/[dayId]/delete-set";
+import { Sets } from "@/lib/infer-types";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-type Set = {
-  id: string;
-  setNumber: string | null;
-  weight: string | null;
-  reps: string | null;
-  exerciseId: string;
-};
 
-const ActionCell = ({ row }: { row: Row<Set> }) => {
+
+const ActionCell = ({ row }: { row: Row<Sets> }) => {
   const set = row.original;
 
   return (
@@ -25,7 +20,7 @@ const ActionCell = ({ row }: { row: Row<Set> }) => {
   );
 };
 
-export const columns: ColumnDef<Set>[] = [
+export const columns: ColumnDef<Sets>[] = [
   {
     accessorKey: "setNumber",
     header: "Set",

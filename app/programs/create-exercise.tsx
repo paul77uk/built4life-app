@@ -1,17 +1,8 @@
 "use client";
 
-import { workoutSchema } from "@/types/workout-schema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -30,19 +21,22 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
-import { createProgram } from "./actions/create-program";
+import { exerciseSchema, zExerciseSchema } from "@/types/exercise-schema";
+import { createExercise } from "@/server/actions/create-exercises";
+import { PlusSquare } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 
-const CreateProgram = () => {
+const CreateExercise = ({ dayId }: Partial<zExerciseSchema>) => {
   const queryClient = useQueryClient();
-  const form = useForm<z.infer<typeof workoutSchema>>({
-    resolver: zodResolver(workoutSchema),
+  const form = useForm<z.infer<typeof exerciseSchema>>({
+    mode: "onChange",
   });
 
-  const { execute, status } = useAction(createProgram, {
+  form.setValue("dayId", dayId as string);
+
+  const { execute, status } = useAction(createExercise, {
     onSuccess(data) {
       if (data?.error) toast.error(data.error);
       if (data?.success) {
@@ -51,28 +45,32 @@ const CreateProgram = () => {
       }
     },
     onExecute: (data) => {
-      toast.loading("Creating workout...");
+      toast.loading("Creating Exercise...");
     },
     onSettled: () => {
       toast.dismiss();
-      // form.reset();
+      form.reset();
     },
   });
 
-  const onSubmit = (values: z.infer<typeof workoutSchema>) => {
+  const onSubmit = (values: z.infer<typeof exerciseSchema>) => {
+    console.log(values);
     execute(values);
   };
 
   return (
-    <main>
+    <>
       <Dialog>
         <DialogTrigger asChild>
-          <Plus size={22} className="cursor-pointer" />
+          <div className="flex gap-2 border w-fit text-primary border-primary rounded p-2 ms-5 mt-4 bg-black md:ml-[282px]">
+            Exercise
+            <PlusSquare size={22} className="cursor-pointer" />
+          </div>
         </DialogTrigger>
         <DialogContent>
           <Card className="border-0">
             <CardHeader>
-              <CardTitle>Create Workout</CardTitle>
+              <CardTitle>Create Exercise</CardTitle>
               {/* <CardDescription>Card Description</CardDescription> */}
             </CardHeader>
             <CardContent>
@@ -83,36 +81,61 @@ const CreateProgram = () => {
                 >
                   <FormField
                     control={form.control}
-                    name="title"
+                    name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Workout Title</FormLabel>
+                        <FormLabel>Exercise Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="workout title" {...field} />
+                          <Input placeholder="exercise name" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
+
                   <FormField
                     control={form.control}
-                    name="totalWeeks"
+                    name="numSet"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Number of weeks</FormLabel>
+                        <FormLabel>Number of Sets</FormLabel>
                         <FormControl>
-                          <Input
-                            placeholder="number of weeks"
-                            {...field}
-                            type="number"
-                            min={0}
-                          />
+                          <Input placeholder="number of sets" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <DialogClose asChild>
+
+                  <FormField
+                    control={form.control}
+                    name="weight"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Weight</FormLabel>
+                        <FormControl>
+                          <Input placeholder="weight" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="reps"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Reps</FormLabel>
+                        <FormControl>
+                          <Input placeholder="reps" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <DialogClose>
                     <Button
                       // isDirty is a hook that returns true if the form has been modified
                       disabled={
@@ -130,7 +153,7 @@ const CreateProgram = () => {
           </Card>
         </DialogContent>
       </Dialog>
-    </main>
+    </>
   );
 };
-export default CreateProgram;
+export default CreateExercise;

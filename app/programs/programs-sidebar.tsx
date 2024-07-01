@@ -12,8 +12,9 @@ import { DataTable } from "./data-table";
 import { columns } from "./columns";
 import CreateProgram from "./create-program";
 import { getProgramsByUserId } from "./actions/get-programs-by-user-id";
-import { Trash2 } from "lucide-react";
-import EditWorkout from "./edit-program";
+import DeleteProgram from "./delete-program";
+import EditProgram from "./edit-program";
+import CreateExercise from "./create-exercise";
 
 const ProgramSidebar = () => {
   const [expanded, setExpanded] = useState(true);
@@ -33,11 +34,11 @@ const ProgramSidebar = () => {
   useEffect(() => {
     if (workouts) {
       setProgram(workouts[0]);
-      if (workouts[0]?.weeks) {
+      if (workouts[0].weeks) {
         setWeeks(workouts[0].weeks[0]);
-        if (workouts[0].weeks[0]?.days) {
+        if (workouts[0].weeks[0].days) {
           setDays(workouts[0].weeks[0].days[0]);
-          if (workouts[0].weeks[0].days[0]?.exercises) {
+          if (workouts[0].weeks[0].days[0].exercises) {
             setExercises(workouts[0].weeks[0].days[0].exercises[0]);
           }
         }
@@ -117,9 +118,7 @@ const ProgramSidebar = () => {
       </Sidebar>
 
       <main
-        className={`transition-all transform duration-100 text-slate-700 flex w-full flex-col items-center${
-          expanded ? "md:ml-64" : "md:ml-20"
-        }`}
+        className={`transition-all transform duration-100 text-slate-700 flex w-full flex-col items-center${"md:ml-64"}`}
       >
         {mobile && (
           <Overlay
@@ -135,8 +134,8 @@ const ProgramSidebar = () => {
             <div className="flex items-center gap-3 ml-auto md:mx-auto text-primary font-bold text-xl md:text-2xl">
               {program.title}
               <div className="flex gap-1 items-center">
-                <EditWorkout title={program.title} id={program?.id} />
-                <Trash2 className="mb-1" />
+                <EditProgram id={program.id} title={program.title} />
+                <DeleteProgram id={program.id} title={program.title} />
               </div>
             </div>
           )}
@@ -169,6 +168,8 @@ const ProgramSidebar = () => {
 
         <div className="w-full h-full">
           <div className="text-center">
+            {exercises && <CreateExercise dayId={exercises.dayId} />}
+
             {days?.exercises.map((exercise: any) => {
               return (
                 <div className="mb-4" key={exercise.id}>
