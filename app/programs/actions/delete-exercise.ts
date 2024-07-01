@@ -3,19 +3,18 @@
 import { createSafeActionClient } from "next-safe-action";
 import { z } from "zod";
 
-
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { db } from "@/server";
 import { exercises } from "@/server/schema";
 import { Exercises } from "@/lib/infer-types";
-
+import { zExerciseSchema } from "@/types/exercise-schema";
 
 const action = createSafeActionClient();
 
 export const deleteExercise = action(
   z.object({ id: z.string() }),
-  async ({ id } : Exercises ) => {
+  async ({ id }) => {
     try {
       const data = await db
         .delete(exercises)
@@ -31,7 +30,7 @@ export const deleteExercise = action(
           },
         },
       });
-      
+
       revalidatePath("/programs");
       return { success: `${data[0].name} deleted` };
     } catch (error) {
@@ -39,5 +38,3 @@ export const deleteExercise = action(
     }
   }
 );
-
-
