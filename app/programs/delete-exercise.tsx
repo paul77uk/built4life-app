@@ -18,8 +18,9 @@ import { useAction } from "next-safe-action/hooks";
 import { toast } from "sonner";
 import { deleteExercise } from "./actions/delete-exercise";
 import { useQueryClient } from "@tanstack/react-query";
+import { zExerciseSchema } from "@/types/exercise-schema";
 
-const DeleteExercise = ({ id }: Partial<Exercises>) => {
+const DeleteExercise = ({ id }: Partial<zExerciseSchema>) => {
   const queryClient = useQueryClient();
   const { status, execute } = useAction(deleteExercise, {
     onSuccess(data) {

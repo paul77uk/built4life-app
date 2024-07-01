@@ -8,13 +8,14 @@ import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { db } from "@/server";
 import { exercises } from "@/server/schema";
+import { Exercises } from "@/lib/infer-types";
 
 
 const action = createSafeActionClient();
 
 export const deleteExercise = action(
   z.object({ id: z.string() }),
-  async ({ id }) => {
+  async ({ id } : Exercises ) => {
     try {
       const data = await db
         .delete(exercises)
