@@ -65,7 +65,7 @@ const ProgramsSidebar2 = async () => {
                 <AccordionContent>
                   <div className="ms-10 uppercase text-[#64748B]">Days</div>
                   {week.days.map((day) => (
-                    <Link href={`/programs/exercise/${day.id}`}>
+                    <Link href={`/programs/exercise/${day.id}`} key={day.id}>
                       <AccordionItem
                         key={day.id}
                         value={day.id}
