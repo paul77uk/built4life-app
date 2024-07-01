@@ -12,7 +12,7 @@ const action = createSafeActionClient();
 
 export const createExercise = action(
   exerciseSchema,
-  async ({ id, name, dayId, workoutId, numSet, weight, reps }) => {
+  async ({ id, name, dayId, numSet, weight, reps }) => {
     try {
       // if wanted to test the error handling, we can throw an error
       // throw new Error("Not implemented");
@@ -28,8 +28,8 @@ export const createExercise = action(
           .where(eq(exercises.id, id))
           .returning();
         // we call existingWorkout[0] to get the first item in the array, as update(workouts) returns an array
-        revalidatePath(`/dashboard/day/${workoutId}/exercise/${dayId}`);
-        revalidatePath("/dashboard/programs");
+
+        revalidatePath("/programs");
         return { success: `${existingExercise[0].name} updated` };
       }
       // create the exercise
@@ -53,8 +53,8 @@ export const createExercise = action(
           })
           .returning();
       }
-      revalidatePath(`/dashboard/day/${workoutId}/exercise/${dayId}`);
-      revalidatePath("/dashboard/programs");
+
+      revalidatePath("/programs");
 
       return { success: `${newExercise[0].name} created` };
     } catch (error) {
