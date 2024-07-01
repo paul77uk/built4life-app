@@ -34,7 +34,6 @@ const CreateExercise = () => {
   const form = useForm<z.infer<typeof exerciseSchema>>({
     resolver: zodResolver(exerciseSchema),
     defaultValues: {
-      workoutId: workoutId as string,
       name: "",
       dayId: dayId as string,
     },
