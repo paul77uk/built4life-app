@@ -47,7 +47,7 @@ const ProgramSidebar = () => {
   }, [workouts]);
 
   return (
-    <div className="relative flex flex-row w-full h-full min-h-[calc(100vh-112px)]">
+    <div className="relative flex flex-row h-full min-h-[calc(100vh-112px)]">
       <Sidebar
         color="dark"
         onToggle={(state: SidebarState) => {
@@ -118,7 +118,7 @@ const ProgramSidebar = () => {
       </Sidebar>
 
       <main
-        className={`transition-all transform duration-100 text-slate-700 flex w-full flex-col items-center${"md:ml-64"}`}
+        className={`transition-all transform duration-100 text-slate-700 flex w-full flex-col items-center`}
       >
         {mobile && (
           <Overlay
@@ -129,7 +129,7 @@ const ProgramSidebar = () => {
             className="md:hidden z-40"
           />
         )}
-        <header className="flex flex-row px-8 items-center  w-full shadow-sm min-h-[4rem] bg-black">
+        {/* <header className="flex flex-row px-8 items-center  w-full shadow-sm min-h-[4rem] bg-black">
           {program && (
             <div className="flex items-center gap-3 ml-auto md:mx-auto text-primary font-bold text-xl md:text-2xl">
               {program.title}
@@ -164,11 +164,11 @@ const ProgramSidebar = () => {
               />
             </svg>
           </Button>
-        </header>
+        </header> */}
 
-        <div className="w-full h-full">
+        {/* <div className="w-full h-full">
           <div className="text-center">
-            {exercises && <CreateExercise dayId={exercises.dayId} />}
+            {days && <CreateExercise dayId={days.id} />}
 
             {days?.exercises.map((exercise: any) => {
               return (
@@ -182,7 +182,7 @@ const ProgramSidebar = () => {
               );
             })}
           </div>
-        </div>
+        </div> */}
       </main>
     </div>
   );

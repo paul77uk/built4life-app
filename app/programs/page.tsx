@@ -2,7 +2,7 @@ import ProgramSidebar from "./programs-sidebar"
 
 const ProgramsPage = () => {
   return (
-    <ProgramSidebar />
+    <div>ProgramPagr</div>
   )
 }
 export default ProgramsPage
