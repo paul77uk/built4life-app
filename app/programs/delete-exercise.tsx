@@ -54,7 +54,7 @@ const DeleteExercise = ({ id }: Partial<zExerciseSchema>) => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={() => execute({ id })}>
+          <AlertDialogAction onClick={() => execute({ id: id as string })}>
             Continue
           </AlertDialogAction>
         </AlertDialogFooter>
