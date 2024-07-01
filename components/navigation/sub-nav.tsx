@@ -52,7 +52,7 @@ export default function SubNav() {
             className={cn(
               "flex gap-2 items-center p-3 text-white hover:text-primary",
 
-              pathname === link.path && "bg-primary hover:text-white"
+              pathname.includes(link.path) && "bg-primary hover:text-white"
             )}
             href={link.path}
           >

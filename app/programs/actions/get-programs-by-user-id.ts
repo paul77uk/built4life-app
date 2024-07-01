@@ -4,6 +4,7 @@ import { db } from "@/server";
 import { auth } from "@/server/auth";
 import { workouts } from "@/server/schema";
 import { eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 
 export const getProgramsByUserId = async () => {
   const session = await auth();
@@ -39,7 +40,7 @@ export const getProgramsByUserId = async () => {
 
   if (!workoutData) throw new Error("No workout found");
 
-  // revalidatePath("/dashboard/programs/");
+  revalidatePath("/programs");
 
   return workoutData;
 };

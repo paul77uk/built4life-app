@@ -46,7 +46,7 @@ export const createProgram = action(
         // we need to use returning() to get the new workout
         .returning();
 
-      // revalidatePath("/programs");
+      revalidatePath("/programs");
 
       // creates the number of weeks inputed
       for (let i = 0; i < totalWeeks!; i++) {
@@ -67,7 +67,7 @@ export const createProgram = action(
         }
       }
 
-      // revalidatePath("/programs");
+      revalidatePath("/programs");
       return { success: `${newWorkout[0].title} created` };
     } catch (error) {
       return { error: "Failed to create workout" };

@@ -29,7 +29,7 @@ export const createExercise = action(
           .where(eq(exercises.id, id))
           .returning();
         // we call existingWorkout[0] to get the first item in the array, as update(workouts) returns an array
-        // revalidatePath("/programs");
+        revalidatePath(`/programs/exercise/${dayId}`);
         return { success: `${existingExercise[0].name} updated` };
       }
       // create the exercise
@@ -56,7 +56,7 @@ export const createExercise = action(
 
       // revlidatePath doesn't work when called from a client component, s we will use invalidateQueries from Tanstack query instead, in the client component
       // revalidatePath("/programs");
-
+      revalidatePath(`/programs/exercise/${dayId}`);
       return { success: `${newExercise[0].name} created` };
     } catch (error) {
       return { error: `Failed to create exercise ${error}` };
