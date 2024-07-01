@@ -42,7 +42,6 @@ const EditExercise = ({ exercise }: EditExerciseProps) => {
     resolver: zodResolver(exerciseSchema),
     defaultValues: {
       id: exercise.id,
-      workoutId: workoutId as string,
       name: exercise.name || "",
       dayId: dayId as string,
     },
