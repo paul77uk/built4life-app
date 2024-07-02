@@ -55,7 +55,7 @@ const ProgramsSidebar2 = async () => {
       {workoutData.map((workout) => (
         <AccordionItem className="ms-5" key={workout.id} value={workout.id}>
           <AccordionTrigger>
-            <div className="flex gap-2 justify-start text-slate-500 items-center active:bg-primary">
+            <div className="flex gap-2 justify-start text-slate-500 items-center">
               <div className="flex gap-1 items-center">
                 <EditProgram id={workout.id} title={workout.title} />
                 <DeleteProgram id={workout.id} title={workout.title} />
