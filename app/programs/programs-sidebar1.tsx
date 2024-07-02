@@ -55,7 +55,7 @@ const ProgramsSidebar2 = async () => {
       {workoutData.map((workout) => (
         <AccordionItem className="ms-5" key={workout.id} value={workout.id}>
           <AccordionTrigger>
-            <div className="flex gap-2 justify-start text-slate-500 items-center">
+            <div className="flex gap-2 justify-start text-slate-500 items-center hover:text-primary">
               <div className="flex gap-1 items-center">
                 <EditProgram id={workout.id} title={workout.title} />
                 <DeleteProgram id={workout.id} title={workout.title} />
@@ -68,7 +68,7 @@ const ProgramsSidebar2 = async () => {
 
             {workout.weeks.map((week) => (
               <AccordionItem key={week.id} value={week.id}>
-                <AccordionTrigger className="ms-5 text-[#9a9da3]">
+                <AccordionTrigger className="ms-5 text-[#9a9da3] hover:text-primary">
                   Week {week.number}
                 </AccordionTrigger>
                 <AccordionContent>
@@ -78,7 +78,7 @@ const ProgramsSidebar2 = async () => {
                       <AccordionItem
                         key={day.id}
                         value={day.id}
-                        className="ms-16 text-[#9a9da3] my-4 cursor-pointer"
+                        className="ms-16 text-[#9a9da3] my-4 cursor-pointer hover:text-primary"
                       >
                         Day {day.number}
                       </AccordionItem>

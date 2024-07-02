@@ -26,7 +26,7 @@ const Nav = async () => {
               <span
                 className={cn(
                   font.className,
-                  "flex ms-9 sm:ms-0 gap-2 self-center text-2xl sm:text-3xl lg:text-4xl whitespace-nowrap dark:text-white"
+                  "ms-9 sm:ms-0 gap-2 self-center text-2xl sm:text-3xl lg:text-4xl whitespace-nowrap dark:text-white"
                 )}
               >
                 BUILT<span className="text-primary">4</span>LIFE
