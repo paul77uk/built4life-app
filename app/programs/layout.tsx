@@ -8,7 +8,7 @@ const ProgramLayout = ({
 }>) => {
   return (
     <div className="flex m-5 gap-5">
-      <div className="">
+      <div className="hidden sm:block">
         <ProgramsSidebar2 />
       </div>
       <div className="flex-1">{children}</div>

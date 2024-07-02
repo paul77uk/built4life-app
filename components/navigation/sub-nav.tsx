@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import MobileMenu from "./mobile-menu";
 
 export default function SubNav() {
   const pathname = usePathname();

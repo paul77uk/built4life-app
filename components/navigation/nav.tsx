@@ -7,6 +7,7 @@ import { Rubik_Dirt } from "next/font/google";
 import { cn } from "@/lib/utils";
 
 import { auth } from "@/server/auth";
+import MobileMenu from "./mobile-menu";
 
 const font = Rubik_Dirt({ weight: "400", preload: false });
 
@@ -25,7 +26,7 @@ const Nav = async () => {
               <span
                 className={cn(
                   font.className,
-                  "self-center text-2xl sm:text-3xl lg:text-4xl whitespace-nowrap dark:text-white"
+                  "flex ms-9 sm:ms-0 gap-2 self-center text-2xl sm:text-3xl lg:text-4xl whitespace-nowrap dark:text-white"
                 )}
               >
                 BUILT<span className="text-primary">4</span>LIFE
