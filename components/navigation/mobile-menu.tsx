@@ -24,7 +24,10 @@ const MobileMenu = () => {
         <SheetTrigger>
           <Menu />
         </SheetTrigger>
-        <SheetContent side={"left"} className="w-[300px]">
+        <SheetContent
+          side={"left"}
+          className="w-[310px] overflow-y-auto overflow-x-hidden"
+        >
           <ProgramsSidebar2 />
         </SheetContent>
       </Sheet>

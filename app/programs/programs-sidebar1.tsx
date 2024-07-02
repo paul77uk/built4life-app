@@ -78,7 +78,7 @@ const ProgramsSidebar2 = async () => {
                       <AccordionItem
                         key={day.id}
                         value={day.id}
-                        className="ms-16 text-[#9a9da3] my-2 cursor-pointer"
+                        className="ms-16 text-[#9a9da3] my-4 cursor-pointer"
                       >
                         Day {day.number}
                       </AccordionItem>
