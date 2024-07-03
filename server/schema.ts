@@ -189,3 +189,66 @@ export const setsRelations = relations(sets, ({ one }) => ({
     references: [exercises.id],
   }),
 }));
+
+export const workoutHistory = pgTable("workoutHistory", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID())
+    .notNull(),
+  workoutName: text("workoutName"),
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  created: timestamp("created").defaultNow(),
+});
+
+export const workoutHistoryRelations = relations(
+  workoutHistory,
+  ({ many }) => ({
+    exerciseHistory: many(exerciseHistory),
+  })
+);
+
+export const exerciseHistory = pgTable("exerciseHistory", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID())
+    .notNull(),
+  exerciseName: text("exerciseName"),
+  workoutHistoryId: text("workoutHistoryId")
+    .notNull()
+    .references(() => workoutHistory.id, { onDelete: "cascade" }),
+  created: timestamp("created").defaultNow(),
+});
+
+export const exerciseHistoryRelations = relations(
+  exerciseHistory,
+  ({ one, many }) => ({
+    workoutHistory: one(workoutHistory, {
+      fields: [exerciseHistory.workoutHistoryId],
+      references: [workoutHistory.id],
+    }),
+    setHistory: many(setHistory),
+  })
+);
+
+export const setHistory = pgTable("setHistory", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID())
+    .notNull(),
+  setNumber: text("setNumber"),
+  weight: text("weight"),
+  reps: text("reps"),
+  exerciseHistoryId: text("exerciseHistoryId")
+    .notNull()
+    .references(() => exerciseHistory.id, { onDelete: "cascade" }),
+  created: timestamp("created").defaultNow(),
+});
+
+export const setHistoryRelations = relations(setHistory, ({ one }) => ({
+  exerciseHistory: one(exerciseHistory, {
+    fields: [setHistory.exerciseHistoryId],
+    references: [exerciseHistory.id],
+  }),
+}));

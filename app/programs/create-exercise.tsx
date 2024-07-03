@@ -25,7 +25,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { exerciseSchema, zExerciseSchema } from "@/types/exercise-schema";
 import { createExercise } from "@/server/actions/create-exercises";
-import { PlusSquare } from "lucide-react";
+import { Plus, PlusSquare } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 
 const CreateExercise = ({ dayId }: Partial<zExerciseSchema>) => {
@@ -62,10 +62,10 @@ const CreateExercise = ({ dayId }: Partial<zExerciseSchema>) => {
     <>
       <Dialog>
         <DialogTrigger asChild>
-          <div className="flex gap-2 border w-fit text-primary border-primary rounded p-2 ms-5  bg-black">
+          <Button className="flex gap-2 ms-5">
             Exercise
-            <PlusSquare size={22} className="cursor-pointer" />
-          </div>
+            <Plus />
+          </Button>
         </DialogTrigger>
         <DialogContent>
           <Card className="border-0">

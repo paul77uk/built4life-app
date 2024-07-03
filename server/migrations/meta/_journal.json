@@ -8,6 +8,13 @@
       "when": 1719755928707,
       "tag": "0000_brown_zemo",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1719959917256,
+      "tag": "0001_brief_william_stryker",
+      "breakpoints": true
     }
   ]
 }
