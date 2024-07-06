@@ -1,9 +1,5 @@
 "use client";
 
-type Exercise = {
-  id: string;
-  name: string | null;
-};
 
 import {
   ColumnDef,
@@ -23,11 +19,12 @@ import {
 import AddSet from "./[dayId]/add-set";
 import EditExercise from "./[dayId]/edit-exercise";
 import DeleteExercise from "./[dayId]/delete-exercise";
+import { Exercises } from "@/lib/infer-types";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  exercise: Exercise;
+  exercise: Exercises;
 }
 
 export function DataTable<TData, TValue>({
