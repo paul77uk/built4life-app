@@ -9,6 +9,7 @@ import {
 } from "drizzle-orm/pg-core";
 
 import type { AdapterAccountType } from "next-auth/adapters";
+import { number } from "zod";
 
 // defaultFn: () => crypto.randomUUID() is a function that generates a random UUID for the id column
 // uuid's are used to uniquely identify a user, this is a common practice in databases, the id's are longer and harder to guess than a simple number, they use a combination of numbers and letters.
@@ -115,7 +116,7 @@ export const weeks = pgTable("week", {
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID())
     .notNull(),
-  number: text("number"),
+  number: integer("number").notNull(),
   workoutId: text("workoutId")
     .notNull()
     .references(() => workouts.id, { onDelete: "cascade" }),
@@ -135,7 +136,7 @@ export const days = pgTable("day", {
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID())
     .notNull(),
-  number: text("number"),
+  number: integer("number").notNull(),
   weekId: text("weekId")
     .notNull()
     .references(() => weeks.id, { onDelete: "cascade" }),
@@ -155,7 +156,7 @@ export const exercises = pgTable("exercise", {
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID())
     .notNull(),
-  name: text("name"),
+  name: text("name").notNull(),
   dayId: text("dayId")
     .notNull()
     .references(() => days.id, { onDelete: "cascade" }),
@@ -177,7 +178,7 @@ export const sets = pgTable("set", {
   exerciseId: text("exerciseId")
     .notNull()
     .references(() => exercises.id, { onDelete: "cascade" }),
-  setNumber: text("setNumber"),
+  setNumber: integer("setNumber").notNull(),
   weight: text("weight"),
   reps: text("reps"),
   created: timestamp("created").defaultNow(),
@@ -237,7 +238,7 @@ export const setHistory = pgTable("setHistory", {
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID())
     .notNull(),
-  setNumber: text("setNumber"),
+  setNumber: integer("setNumber").notNull(),
   weight: text("weight"),
   reps: text("reps"),
   exerciseHistoryId: text("exerciseHistoryId")

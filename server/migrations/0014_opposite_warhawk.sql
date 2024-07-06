@@ -1,0 +1,1 @@
+ALTER TABLE "setHistory" ADD COLUMN "setNumber2" integer;

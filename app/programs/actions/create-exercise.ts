@@ -46,7 +46,7 @@ export const createExercise = action(
         await db
           .insert(sets)
           .values({
-            setNumber: String(i + 1),
+            setNumber: i + 1,
             weight,
             reps,
             exerciseId: newExercise[0].id,

@@ -1,0 +1,1 @@
+ALTER TABLE "set" ALTER COLUMN "setNumber" SET NOT NULL;

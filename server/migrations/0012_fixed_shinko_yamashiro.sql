@@ -1,0 +1,1 @@
+ALTER TABLE "set" DROP COLUMN IF EXISTS "setNumber";

@@ -40,6 +40,7 @@ const CreateProgram = () => {
   const queryClient = useQueryClient();
   const form = useForm<z.infer<typeof workoutSchema>>({
     resolver: zodResolver(workoutSchema),
+    mode: "onChange",
   });
 
   const { execute, status } = useAction(createProgram, {

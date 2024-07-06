@@ -1,0 +1,1 @@
+ALTER TABLE "week" ALTER COLUMN "number" SET NOT NULL;

@@ -15,6 +15,125 @@
       "when": 1719959917256,
       "tag": "0001_brief_william_stryker",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1720288407279,
+      "tag": "0002_happy_beast",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1720292381736,
+      "tag": "0003_safe_wallow",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1720294829668,
+      "tag": "0004_lively_bucky",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1720294870383,
+      "tag": "0005_smooth_clea",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1720294917150,
+      "tag": "0006_tranquil_peter_parker",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1720296782061,
+      "tag": "0007_melted_hobgoblin",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1720296873342,
+      "tag": "0008_little_vampiro",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1720296920371,
+      "tag": "0009_reflective_skrulls",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1720296966123,
+      "tag": "0010_opposite_brood",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "5",
+      "when": 1720297162165,
+      "tag": "0011_aromatic_roulette",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "5",
+      "when": 1720297204312,
+      "tag": "0012_fixed_shinko_yamashiro",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "5",
+      "when": 1720297260641,
+      "tag": "0013_mysterious_excalibur",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "5",
+      "when": 1720297705308,
+      "tag": "0014_opposite_warhawk",
+      "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "5",
+      "when": 1720297739371,
+      "tag": "0015_nice_mister_sinister",
+      "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "5",
+      "when": 1720297784262,
+      "tag": "0016_wooden_speed_demon",
+      "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "5",
+      "when": 1720298206909,
+      "tag": "0017_long_anthem",
+      "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "5",
+      "when": 1720298934357,
+      "tag": "0018_yellow_warlock",
+      "breakpoints": true
     }
   ]
 }

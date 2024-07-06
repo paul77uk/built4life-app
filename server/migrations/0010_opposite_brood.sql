@@ -1,0 +1,1 @@
+ALTER TABLE "day" RENAME COLUMN "number_new" TO "number";

@@ -27,10 +27,13 @@ import { exerciseSchema, zExerciseSchema } from "@/types/exercise-schema";
 import { createExercise } from "@/server/actions/create-exercises";
 import { Plus, PlusSquare } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
+import { Exercises } from "@/lib/infer-types";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-const CreateExercise = ({ dayId }: Partial<zExerciseSchema>) => {
+const CreateExercise = ({ dayId }: Partial<Exercises>) => {
   const queryClient = useQueryClient();
   const form = useForm<z.infer<typeof exerciseSchema>>({
+    resolver: zodResolver(exerciseSchema),
     mode: "onChange",
   });
 

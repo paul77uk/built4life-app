@@ -1,0 +1,1 @@
+ALTER TABLE "setHistory" ALTER COLUMN "setNumber" SET NOT NULL;

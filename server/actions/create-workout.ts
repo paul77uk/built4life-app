@@ -52,7 +52,7 @@ export const createWorkout = action(
         const newWeek = await db
           .insert(weeks)
           .values({
-            number: String(i + 1),
+            number: i + 1,
             workoutId: newWorkout[0].id,
           })
           .returning();
@@ -60,7 +60,7 @@ export const createWorkout = action(
         // creates 7 days for each week
         for (let i = 0; i < 7; i++) {
           await db.insert(days).values({
-            number: String(i + 1),
+            number: i + 1,
             weekId: newWeek[0].id,
           });
         }

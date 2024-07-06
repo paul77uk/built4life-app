@@ -1,0 +1,1 @@
+ALTER TABLE "setHistory" DROP COLUMN IF EXISTS "setNumber";

@@ -1,0 +1,1 @@
+ALTER TABLE "day" DROP COLUMN IF EXISTS "number";

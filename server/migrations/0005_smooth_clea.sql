@@ -1,0 +1,1 @@
+ALTER TABLE "week" DROP COLUMN IF EXISTS "number";

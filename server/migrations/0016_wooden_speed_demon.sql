@@ -1,0 +1,1 @@
+ALTER TABLE "setHistory" RENAME COLUMN "setNumber2" TO "setNumber";

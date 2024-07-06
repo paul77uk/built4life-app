@@ -27,23 +27,17 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { setSchema } from "@/types/set-schema";
 import { createSet } from "@/server/actions/create-set";
+import { Sets } from "@/lib/infer-types";
 
-type SetProps = {
-  set: {
-    id: string;
-    setNumber: string | null;
-    weight: string | null;
-    reps: string | null;
-    exerciseId: string;
-  };
-};
-
-const EditSet = ({ set }: SetProps) => {
+const EditSet = ({
+  set
+}: { set: Sets
+}) => {
   const form = useForm<z.infer<typeof setSchema>>({
     resolver: zodResolver(setSchema),
     defaultValues: {
       id: set.id,
-      setNumber: set.setNumber as string,
+      setNumber: set.setNumber,
       weight: set.weight as string,
       reps: set.reps as string,
       exerciseId: set.exerciseId,
@@ -78,7 +72,7 @@ const EditSet = ({ set }: SetProps) => {
             <Pencil size={16} />
           </Button>
         </DialogTrigger>
-        <DialogContent >
+        <DialogContent>
           <Card className="border-0">
             <CardHeader>
               <CardTitle>Edit Set</CardTitle>

@@ -19,8 +19,9 @@ import { Trash2 } from "lucide-react";
 import { useAction } from "next-safe-action/hooks";
 import { toast } from "sonner";
 import { deleteProgram } from "./actions/delete-program";
+import { Weeks, Workouts } from "@/lib/infer-types";
 
-const DeleteProgram = ({ id, title }: zWorkoutSchema) => {
+const DeleteProgram = ({ id, title }: Partial<Workouts>) => {
   const queryClient = useQueryClient();
   const { status, execute } = useAction(deleteProgram, {
     onSuccess(data) {

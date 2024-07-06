@@ -8,20 +8,15 @@ import { eq } from "drizzle-orm";
 
 import { revalidatePath } from "next/cache";
 import { exercises, sets } from "../schema";
+import { Sets } from "@/lib/infer-types";
 
 const action = createSafeActionClient();
 
-type SetSchema = {
-  id?: string;
-  exerciseId: string;
-  setNumber: string;
-  weight: string;
-  reps: string;
-};
+
 
 export const createSet = action(
   setSchema,
-  async ({ id, exerciseId, setNumber, weight, reps }: SetSchema) => {
+  async ({ id, exerciseId, setNumber, weight, reps }: Sets) => {
     const day = await db.query.days.findFirst({
       where: eq(sets.id, id as string),
       with: {
