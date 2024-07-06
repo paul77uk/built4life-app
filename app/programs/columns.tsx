@@ -1,9 +1,10 @@
 "use client";
 
 import { ColumnDef, Row } from "@tanstack/react-table";
-import EditSet from "../dashboard/day/[workoutId]/exercise/[dayId]/edit-set";
-import DeleteSet from "../dashboard/day/[workoutId]/exercise/[dayId]/delete-set";
+
 import { Sets } from "@/lib/infer-types";
+import EditSet from "../sets/edit-set";
+import DeleteSet from "../sets/delete-set";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
