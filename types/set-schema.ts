@@ -7,3 +7,5 @@ export const setSchema = z.object({
   weight: z.string(),
   reps: z.string(),
 });
+
+export type zSetSchema = z.infer<typeof setSchema>;

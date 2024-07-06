@@ -1,6 +1,6 @@
 "use server";
 
-import { setSchema } from "./../../types/set-schema";
+import { setSchema, zSetSchema } from "./../../types/set-schema";
 
 import { createSafeActionClient } from "next-safe-action";
 import { db } from "..";
@@ -16,7 +16,7 @@ const action = createSafeActionClient();
 
 export const createSet = action(
   setSchema,
-  async ({ id, exerciseId, setNumber, weight, reps }: Sets) => {
+  async ({ id, exerciseId, setNumber, weight, reps }: zSetSchema) => {
     const day = await db.query.days.findFirst({
       where: eq(sets.id, id as string),
       with: {
@@ -56,7 +56,7 @@ export const createSet = action(
           setNumber,
           weight,
           reps,
-          exerciseId,
+          exerciseId
         })
         // we need to use returning() to get the new exercie
         .returning();
