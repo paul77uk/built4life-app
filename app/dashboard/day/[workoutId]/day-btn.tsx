@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 type DayBtnProps = {
   day: {
     id: string;
-    number: string | null;
+    number: number;
   };
   workoutId: string;
 };
