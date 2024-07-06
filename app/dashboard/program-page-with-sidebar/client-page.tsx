@@ -19,10 +19,10 @@ type ProgramPageProps = {
     title: string | null;
     weeks: {
       id: string;
-      number: string | null;
+      number: number;
       days: {
         id: string;
-        number: string | null;
+        number: number;
       }[];
     }[];
   }[];
