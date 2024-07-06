@@ -14,7 +14,12 @@ const Home = async () => {
     where: eq(workouts.userId, user.id),
     with: { weeks: { with: { days: true } } },
   });
-  redirect(`/programs/exercise/${workoutData[0].weeks[0].days[0].id}`);
+  if (workoutData.length < 1) {
+    redirect(`/programs/`);
+  }
+  if (workoutData.length > 0) {
+    redirect(`/programs/exercise/${workoutData[0].weeks[0].days[0].id}`);
+  }
 };
 export default Home;
 

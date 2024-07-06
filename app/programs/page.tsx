@@ -15,6 +15,11 @@ const ProgramsPage = async () => {
     where: eq(workouts.userId, user.id),
     with: { weeks: { with: { days: true } } },
   });
-  redirect(`/programs/exercise/${workoutData[0].weeks[0].days[0].id}`);
+ if (workoutData.length < 1) {
+   return <div>Create a workout</div>
+ }
+ if (workoutData.length > 0) {
+   redirect(`/programs/exercise/${workoutData[0].weeks[0].days[0].id}`);
+ }
 };
 export default ProgramsPage;
