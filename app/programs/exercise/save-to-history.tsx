@@ -26,7 +26,7 @@ const SaveToHistory = ({
   });
 
   return (
-    <main className="ms-5">
+    <main className="my-4">
       <Button
         className="flex gap-2"
         onClick={() =>

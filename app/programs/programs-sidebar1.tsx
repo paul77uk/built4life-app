@@ -9,11 +9,13 @@ import { db } from "@/server";
 import { auth } from "@/server/auth";
 import { workouts } from "@/server/schema";
 import { eq } from "drizzle-orm";
-import { Dumbbell } from "lucide-react";
+import { Dumbbell, LogOut } from "lucide-react";
 import Link from "next/link";
 import CreateProgram from "./create-program";
 import EditProgram from "./edit-program";
 import DeleteProgram from "./delete-program";
+
+import React from "react";
 
 const ProgramsSidebar2 = async () => {
   const session = await auth();
@@ -52,6 +54,7 @@ const ProgramsSidebar2 = async () => {
       <div className="uppercase text-[#64748B] mb-3 flex gap-1">
         Programs <CreateProgram />
       </div>
+
       {workoutData.map((workout) => (
         <AccordionItem className="ms-5" key={workout.id} value={workout.id}>
           <AccordionTrigger>

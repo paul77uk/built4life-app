@@ -62,7 +62,7 @@ const CreateExercise = ({ dayId }: Partial<zExerciseSchema>) => {
     <>
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="flex gap-2 ms-5">
+          <Button className="flex gap-2 my-4">
             Exercise
             <Plus />
           </Button>

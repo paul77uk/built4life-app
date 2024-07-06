@@ -27,6 +27,6 @@ export const getExerciseByDayId = async ({ dayId }: { dayId: string }) => {
 
   if (!exerciseData) throw new Error("No exercises found");
 
-  revalidatePath("/dashboard/programs");
+  revalidatePath(`/programs/exercise/${dayId}`);
   return exerciseData;
 };
