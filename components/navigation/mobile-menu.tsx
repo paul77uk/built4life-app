@@ -1,4 +1,3 @@
-import DayBtn from "@/app/dashboard/day/[workoutId]/day-btn";
 import ProgramsSidebar2 from "@/app/programs/programs-sidebar1";
 import {
   Sheet,
