@@ -1,5 +1,4 @@
 import { db } from "@/server";
-import ProgramSidebar from "./programs-sidebar";
 import { redirect } from "next/navigation";
 import { auth } from "@/server/auth";
 import { workouts } from "@/server/schema";

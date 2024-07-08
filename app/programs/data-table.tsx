@@ -16,11 +16,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-
-import EditExercise from "../dashboard/day/[workoutId]/exercise/[dayId]/edit-exercise";
 import DeleteExercise from "./delete-exercise";
 import { Exercises } from "@/lib/infer-types";
 import AddSet from "../sets/add-set";
+import EditExercise from "./edit-exercise";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];

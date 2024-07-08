@@ -4,12 +4,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { cn } from "@/lib/utils";
+
 import { db } from "@/server";
 import { auth } from "@/server/auth";
 import { workouts } from "@/server/schema";
 import { eq } from "drizzle-orm";
-import { Dumbbell, LogOut } from "lucide-react";
+
 import Link from "next/link";
 import CreateProgram from "./create-program";
 import EditProgram from "./edit-program";

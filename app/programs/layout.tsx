@@ -1,4 +1,3 @@
-import ProgramSidebar from "./programs-sidebar";
 import ProgramsSidebar2 from "./programs-sidebar1";
 
 const ProgramLayout = ({
