@@ -37,9 +37,9 @@ type AddSetProps = {
 const AddSet = ({ exercise }: AddSetProps) => {
   const form = useForm<z.infer<typeof setSchema>>({
     resolver: zodResolver(setSchema),
-    // defaultValues: {
-    //   exerciseId: exercise.id,
-    // },
+    defaultValues: {
+      exerciseId: exercise.id,
+    },
     mode: "onChange",
   });
   const { execute, status } = useAction(createSet, {
