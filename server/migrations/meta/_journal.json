@@ -134,6 +134,13 @@
       "when": 1720298934357,
       "tag": "0018_yellow_warlock",
       "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "5",
+      "when": 1720646726588,
+      "tag": "0019_good_lady_vermin",
+      "breakpoints": true
     }
   ]
 }
