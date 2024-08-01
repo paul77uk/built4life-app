@@ -1,8 +1,11 @@
+import { subscriptions } from "./../../../../server/schema";
 import { stripe } from "@/lib/stripe";
 import { db } from "@/server";
 import { users } from "@/server/schema";
 import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
+import { NextResponse } from "next/server";
+
 import Stripe from "stripe";
 
 const webhookSecret =
@@ -55,21 +58,34 @@ export async function POST(req: Request) {
               .set({ customerId })
               .where(eq(users.id, user.id));
           }
-        }
 
-        for (const item of lineItems) {
-          const priceId = item.price?.id;
-          const isSubscription = item.price?.type === "recurring";
+          for (const item of lineItems) {
+            const priceId = item.price?.id;
+            const isSubscription = item.price?.type === "recurring";
 
-          if (isSubscription) {
-            let endDate = new Date();
-          } 
+            if (isSubscription) {
+              let endDate = new Date();
+              if (priceId === process.env.STRIPE_YEARLY_PLAN_PRICE_ID) {
+                endDate.setFullYear(endDate.getFullYear() + 1); // 1 year from now
+              } else {
+                throw new Error("Invalid price ID");
+              }
+
+              await db.insert(subscriptions).values({
+                userId: user.id,
+                planId: priceId,
+                endDate,
+                price: item.amount_total || 0,
+              });
+            }
+          }
           // else {
           //   // TODO: Handle one-time purchases, or maybe don't need this as we have ni one time purchases
           // }
         }
     }
-  } catch (err: any) {
-    return new Response(`Webhook Error: ${err.message}`, { status: 400 });
+    return NextResponse.json({})
+  } catch (error) {
+    
   }
 }

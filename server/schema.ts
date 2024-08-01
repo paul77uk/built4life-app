@@ -254,3 +254,16 @@ export const setHistoryRelations = relations(setHistory, ({ one }) => ({
     references: [exerciseHistory.id],
   }),
 }));
+
+export const subscriptions = pgTable("subscription", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID())
+    .notNull(),
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  planId: text("planId"),
+  price: integer("price").default(0),
+  endDate: timestamp("endDate", { mode: "date" }),
+});
